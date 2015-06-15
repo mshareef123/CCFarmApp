@@ -31,4 +31,7 @@ How to work with Git
 * After puling if you have stashed changes pop the stash and apply it if you have any conflicts resolve them before pushing
 * To submit your changes to repository "push" your changes
 
+DEV life server
+===================
 
+* weekly changes will be uploaded to test server located here http://52.24.208.79/foodbankfarm/

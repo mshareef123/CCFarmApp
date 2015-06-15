@@ -2,9 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
 	http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>foodbankfarm</groupId>
-  <artifactId>com.foodbankfarm</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <groupId>com.foodbankfarm</groupId>
+  <artifactId>foodbankfarm</artifactId>
+  <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>Foodbank Farm Project</name>
   	<properties>
@@ -116,7 +116,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>foodbankfarm-api</finalName>
+		<finalName>foodbankfarm</finalName>
 
 		<plugins>
 			<!-- Eclipse project -->
