@@ -1,0 +1,53 @@
+{
+    "jshintRules": { "bitwise": true, "camelcase": true, "curly": true, "eqeqeq": true, "es3": false, "immed": true, "latedef": true, "newcap": true, "noarg": true, "noempty": true, "undef": true, "unused": true, "strict": false, "trailing": false, "browser": true, "globals": { "it": true, "beforeEach": true, "module": true, "expect": true, "spyOn": true, "describe": true, "sessionStorage": true, "localStorage": true, "angular": true, "inject": true, "_": true, "window": true, "alert": true, "escape": true, "unescape": true, "require": true, "__dirname": true, "Require": true, "GetActivitiTaskDetails": true }, "exported": { "Require": true, "Post": true, "GetActivitiTaskDetails": true } },
+    "complexity": { "jsLintXML": "./log/jshint.xml", "errorsOnly": true, "cyclomatic": 5, "halstead": 50, "maintainability": 90, "breakOnErrors": false, "checkstyleXML": "./log/checkstyle.xml", "pmdXML": "./log/pmd.xml" },
+    "path": {
+        "root": "./src/main/webapp/ui/",
+        "dist": "./src/main/webapp/dist",
+        "foodbankfarm": {
+            "js": [
+                "./src/main/webapp/ui/js/**/*.js",
+                "./src/main/webapp/ui/views/**/*.js"
+            ],
+            "css": [
+                "./src/main/webapp/ui/css/**/*.css",
+                "./src/main/webapp/ui/js/**/*.css",
+                "./src/main/webapp/ui/views/**/*.css"
+            ],
+            "views": "./src/main/webapp/ui/views/**/*.html",
+            "directives": "./src/main/webapp/ui/js/directives/**/*.html",
+            "images": [
+                "./src/main/webapp/ui/css/images/**/*.{png,jpg,jpeg,ico}"
+            ],
+            "favicon": "./src/main/webapp/ui/css/favicon.ico"
+        },
+        "vendor": {
+            "js": [
+                "./src/main/webapp/ui/lib/jquery/jquery-2.1.3.js",
+                "./src/main/webapp/ui/lib/bootstrap/bootstrap.js",
+                "./src/main/webapp/ui/lib/lodash/lodash.js",
+                "./src/main/webapp/ui/lib/angular/angular.js",
+                "./src/main/webapp/ui/lib/angular/i18n/angular-locale_en-us.js",
+                "./src/main/webapp/ui/lib/angular/angular-animate.js",
+                "./src/main/webapp/ui/lib/angular/angular-cookies.js",
+                "./src/main/webapp/ui/lib/angular/angular-resource.js",
+                "./src/main/webapp/ui/lib/angular/angular-route.js",
+                "./src/main/webapp/ui/lib/angular/angular-sanitize.js",
+                "./src/main/webapp/ui/lib/angular/angular-touch.js",
+                "./src/main/webapp/ui/lib/bootstrap/ui-bootstrap-0.9.0.js",
+                "./src/main/webapp/ui/lib/bootstrap/ui-bootstrap-tpls-0.9.0.js",
+                "!*.min.js",
+                "!/**/*.min.js"
+            ],
+            "css": "./src/main/webapp/ui/lib/**/*.css",
+            "fonts": [
+                "./src/main/webapp/ui/lib/bootstrap/fonts/*.*",
+                "./src/main/webapp/ui/lib/font-awesome/fonts/*.*"
+            ]
+        },
+        "report": {
+            "root": "./log",
+            "jshint": "./log/jshint.xml"
+        }
+    }
+}

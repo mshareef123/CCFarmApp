@@ -1,0 +1,16 @@
+<app_Header></app_Header>
+<content>
+    <legend>Farm locations</legend>
+    <p>
+        <ul ng-repeat="farm in locations">
+        <li>
+        <div>{{farm.farnName}}<br/>
+        {{farm.address}}<br/>
+        	<smal ng-repeat="product in farm.products">
+        		{{product}}
+        	</smal>
+        </div>
+        </li>
+	</ul>
+	</p>
+</content>
