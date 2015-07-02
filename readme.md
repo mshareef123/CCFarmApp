@@ -20,6 +20,7 @@ How to run the code
 you can download it from  http://tomcat.apache.org/
 * Run Tomcat and open http://localhost:8080 you should see welcome page
 you can also find sample rest service response at http://localhost:8080/controller/listing
+* Added from Jared: I recommend you get Eclipse for this so you can easily deploy the code to your tomcat server.  To set up your server, go to the server tab in Eclipse and click the add button - just give it the install directory for tomcat and it will do the rest.  Now import your git project into eclipse, and right click on com.foodbankfarm.  We want to go to Maven - Update.  Once you've done this you'll have a deployment target for the website.  Go back to your server tab, right click on your tomcat server, and click on 'Add or Remove'.  Add our project to the server.  One last step you need to do is go to Project -> Properties -> Web Project Settings and make sure you see / in the Context Root box.  If you don't, make it that.  Once you've done this you'll be able to launch your server and things will work smoothly!
 
 How to work with Git
 ===================
