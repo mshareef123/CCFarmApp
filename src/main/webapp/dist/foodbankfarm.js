@@ -26,8 +26,8 @@ foodbankfarm.config([
             .when('/listings/', {
                 templateUrl: 'dist/views/listing.html',
                 controller: 'ListingController'
-            })
-            .when('/filter/', {
+            }) 
+            .when('/filter', {
             	templateUrl: 'dist/views/filter.html',
             	controller: 'FilterController'
             })
@@ -162,6 +162,7 @@ angular.module('foodbankfarm')
             };
         }
     ]);
+
 angular.module('foodbankfarm')
     .controller('HomeController', [
         '$scope',

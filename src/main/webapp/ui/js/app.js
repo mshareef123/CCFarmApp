@@ -25,7 +25,12 @@ foodbankfarm.config([
             .when('/listings/', {
                 templateUrl: 'dist/views/listing.html',
                 controller: 'ListingController'
-            }).otherwise({
+            }) 
+            .when('/filter', {
+            	templateUrl: 'dist/views/filter.html',
+            	controller: 'FilterController'
+            })
+            .otherwise({
                 templateUrl: 'dist/views/home.html',
                 controller: 'HomeController'
             });
