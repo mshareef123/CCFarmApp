@@ -1,4 +1,4 @@
-﻿* {
+* {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -50,6 +50,22 @@ h3 {
 
 .content {
     padding: 2em 1em 0;
+}
+
+.linkButton {
+	 background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     cursor: pointer;
+}
+
+.animate-show {
+  line-height: 20px;
+  opacity: 1;
+  padding: 10px;
+  border: 1px solid black;
+  background: white;
 }
 
 @media (min-width: 48em) {
