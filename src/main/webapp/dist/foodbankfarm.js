@@ -26,25 +26,17 @@ foodbankfarm.config([
             .when('/listings/', {
                 templateUrl: 'dist/views/listing.html',
                 controller: 'ListingController'
-            }).otherwise({
+            })
+            .when('/filter/', {
+            	templateUrl: 'dist/views/filter.html',
+            	controller: 'FilterController'
+            })
+            .otherwise({
                 templateUrl: 'dist/views/home.html',
                 controller: 'HomeController'
             });
     }]
 );
-angular.module('foodbankfarm.repositories')
-    .factory('LocationRepository', [
-        '$http',
-        function ($http) {
-            var serverUrl = 'http://localhost:8080/controller';
-            return {
-					list: function (query) {
-						Require.IsNotNull(query, 'query');
-						return $http.get(serverUrl + '/listing?queryString' + query);
-					}
-                };
-            }
-    ]);
 window.Require = {
     /// <summary>Checks value(s) for null, undefined, or truthyness</summary>
 
@@ -120,6 +112,19 @@ window.Require = {
         }
     }
 };
+angular.module('foodbankfarm.repositories')
+    .factory('LocationRepository', [
+        '$http',
+        function ($http) {
+            var serverUrl = 'http://localhost:8080/controller';
+            return {
+					list: function (query) {
+						Require.IsNotNull(query, 'query');
+						return $http.get(serverUrl + '/listing?queryString' + query);
+					}
+                };
+            }
+    ]);
 angular.module('foodbankfarm.directives')
     .directive("appHeader", [
         function () {
@@ -146,6 +151,17 @@ angular
             };
         }]
     );
+angular.module('foodbankfarm')
+    .controller('FilterController', [
+        '$scope',
+        'LocationRepository',
+        function ($scope) {
+            $scope.responsible = {
+                name: 'Jared',
+                email: 'jardavies89@gmail.com'
+            };
+        }
+    ]);
 angular.module('foodbankfarm')
     .controller('HomeController', [
         '$scope',
