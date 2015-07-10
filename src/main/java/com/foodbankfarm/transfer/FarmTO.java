@@ -12,8 +12,8 @@ public class FarmTO {
 	private boolean  foodBankPartner;
 	private boolean acceptsSNAPEBT;
 	private String[] specialities;
-	private String longitude;
-	private String latitude;
+	private Double longitude;
+	private Double latitude;
 	
 	public FarmTO(Integer id,String farmName, String address, String[] specialities) {
 		super();
@@ -94,17 +94,18 @@ public class FarmTO {
 	public void setSpecialities(String[] specialities) {
 		this.specialities = specialities;
 	}
-	public String getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(String longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
-	public String getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(String latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
+
 	
 }

@@ -1,6 +1,8 @@
 ﻿angular.module('foodbankfarm.directives', []);
 angular.module('foodbankfarm.repositories', []);
-angular.module('foodbankfarm.map',['uiGmapgoogle-maps']).config(
+angular.module('foodbankfarm.map',[
+       'uiGmapgoogle-maps',
+       ]).config(
 	    ['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
 	        GoogleMapApiProviders.configure({
 	            key: 'AIzaSyCTwkFSfmpbEPFittMwuiS-Uj6eONCUfdQ',
