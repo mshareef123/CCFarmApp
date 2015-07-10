@@ -1,16 +1,24 @@
 <app_Header></app_Header>
 <content>
     <legend>Farm locations</legend>
-    <p>
-        <ul ng-repeat="farm in locations">
-        <li>
-        <div>{{farm.farnName}}<br/>
-        {{farm.address}}<br/>
-        	<smal ng-repeat="product in farm.products">
-        		{{product}}
-        	</smal>
-        </div>
-        </li>
-	</ul>
-	</p>
+    
+    <div class="list-group">
+    	<div ng-repeat="farm in locations">
+	  	<a ng-click="viewDetail(farm.id)" class="list-group-item" >
+		    <h4 class="list-group-item-heading">{{farm.farmName}} - {{farm.address}}</h4>
+			    <p class="list-group-item-text">
+			   		<span ng-repeat="product in farm.specialities">
+			       		{{product}}
+			       </span>
+			    </p>
+	     </a>
+	     </div>
+     </div>
+    
+      <button ng-model="shouldShowFilter" aria-label="Toggle ngHide" ng-click="shouldShowFilter = !shouldShowFilter">Filter</button><br>
+      <div ng-show="shouldShowFilter"> 
+      	<filter_View></filter_Vyiew> 
+      </div>
+      
+  
 </content>

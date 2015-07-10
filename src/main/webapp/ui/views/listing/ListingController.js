@@ -7,6 +7,7 @@ angular.module('foodbankfarm')
         function ($rootScope,$scope,$location,locationRepository) {
             $scope.locations = [];
             $rootScope.locations = [];
+            $scope.shouldShowFilter = false;
             
             //retrieving list of locations
             locationRepository.list('queryString').then(function (result) {
