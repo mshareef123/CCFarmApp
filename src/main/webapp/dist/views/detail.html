@@ -1,0 +1,21 @@
+<app_Header></app_Header>
+<content>
+    <legend>Farm Detail</legend>
+    
+    <div class="list-group">
+	  	<a href="#" class="list-group-item">
+		    <h4 class="list-group-item-heading">{{farm.farmName}} - {{farm.address}}</h4>
+			    <p class="list-group-item-text">
+			   		<p>{{farm.website}}</p>
+			   		<p>{{farm.city}}</p>
+					<p>{{farm.phone}}</p>
+					<p>{{farm.state}}</p>
+					<p>{{farm.zip}}</p>
+			   		<span ng-repeat="product in farm.specialities">
+			       		{{product}}
+			       </span>
+			    </p>
+	     </a>
+     </div>
+    
+</content>

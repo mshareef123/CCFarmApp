@@ -1,0 +1,9 @@
+<app_Header></app_Header>
+<content>
+    <div id="map_canvas" ng-controller="MapController">
+    <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds">
+            <ui-gmap-markers models="farmmarkers" coords="'self'" icon="'icon'">
+        </ui-gmap-markers>
+    
+    </ui-gmap-google-map>
+</content>
