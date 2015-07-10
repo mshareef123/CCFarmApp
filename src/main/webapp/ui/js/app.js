@@ -1,6 +1,13 @@
 ﻿angular.module('foodbankfarm.directives', []);
 angular.module('foodbankfarm.repositories', []);
-
+angular.module('foodbankfarm.map',['uiGmapgoogle-maps']).config(
+	    ['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
+	        GoogleMapApiProviders.configure({
+	            key: 'AIzaSyCTwkFSfmpbEPFittMwuiS-Uj6eONCUfdQ',
+	            v: '3.17',
+	            libraries: 'weather,geometry,visualization'
+	        });
+	    }]);
 var foodbankfarm = angular.module('foodbankfarm', [
     'ngCookies',
     'ngRoute',
@@ -9,7 +16,8 @@ var foodbankfarm = angular.module('foodbankfarm', [
     'ngResource',
     'foodbankfarm.directives',
     'foodbankfarm.repositories',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'foodbankfarm.map'
 ]);
 
 foodbankfarm.config([
@@ -30,6 +38,10 @@ foodbankfarm.config([
             	templateUrl: 'dist/views/filter.html',
             	controller: 'FilterController'
             })
+            .when('/map', {
+            	templateUrl: 'dist/views/map.html',
+            	controller: 'MapController'
+            })
             .when('/detail/:id', {
             	templateUrl: 'dist/views/detail.html',
             	controller: 'DetailController'
@@ -40,3 +52,13 @@ foodbankfarm.config([
             });
     }]
 );
+
+//angular.module('foodbankfarm', ['uiGmapgoogle-maps']).config(
+//	    ['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
+//	        GoogleMapApiProviders.configure({
+//	            key: 'AIzaSyCTwkFSfmpbEPFittMwuiS-Uj6eONCUfdQ',
+//	            v: '3.17',
+//	            libraries: 'weather,geometry,visualization'
+//	        });
+//	    }]
+//	);

@@ -36,6 +36,7 @@
                 "./src/main/webapp/ui/lib/angular/angular-touch.js",
                 "./src/main/webapp/ui/lib/bootstrap/ui-bootstrap-0.9.0.js",
                 "./src/main/webapp/ui/lib/bootstrap/ui-bootstrap-tpls-0.9.0.js",
+                "./src/main/webapp/ui/lib/angular-google-maps/angular-google-maps.js",
                 "!*.min.js",
                 "!/**/*.min.js"
             ],

@@ -4,7 +4,7 @@
         function ($scope) {
             $scope.responsible = {
                 name: 'Aziz',
-                email: 'abdulaziz.ergashev@gmail.com'
+                email: 'dummy@email.email'
             };
         }
     ]);
