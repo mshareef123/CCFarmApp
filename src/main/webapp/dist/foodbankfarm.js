@@ -1,16 +1,7 @@
 'use strict';
 angular.module('foodbankfarm.directives', []);
 angular.module('foodbankfarm.repositories', []);
-angular.module('foodbankfarm.map',[
-       'uiGmapgoogle-maps',
-       ]).config(
-	    ['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
-	        GoogleMapApiProviders.configure({
-	            key: 'AIzaSyCTwkFSfmpbEPFittMwuiS-Uj6eONCUfdQ',
-	            v: '3.17',
-	            libraries: 'weather,geometry,visualization'
-	        });
-	    }]);
+
 var foodbankfarm = angular.module('foodbankfarm', [
     'ngCookies',
     'ngRoute',
@@ -19,8 +10,7 @@ var foodbankfarm = angular.module('foodbankfarm', [
     'ngResource',
     'foodbankfarm.directives',
     'foodbankfarm.repositories',
-    'ui.bootstrap',
-    'foodbankfarm.map'
+    'ui.bootstrap'
 ]);
 
 foodbankfarm.config([
@@ -37,13 +27,9 @@ foodbankfarm.config([
                 templateUrl: 'dist/views/listing.html',
                 controller: 'ListingController'
             }) 
-            .when('/map', {
-            	templateUrl: 'dist/views/map.html',
-            	controller: 'MapController'
-            })
-            .when('/detail/:id', {
-            	templateUrl: 'dist/views/detail.html',
-            	controller: 'DetailController'
+            .when('/filter', {
+            	templateUrl: 'dist/views/filter.html',
+            	controller: 'FilterController'
             })
             .otherwise({
                 templateUrl: 'dist/views/home.html',
@@ -51,16 +37,6 @@ foodbankfarm.config([
             });
     }]
 );
-
-//angular.module('foodbankfarm', ['uiGmapgoogle-maps']).config(
-//	    ['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
-//	        GoogleMapApiProviders.configure({
-//	            key: 'AIzaSyCTwkFSfmpbEPFittMwuiS-Uj6eONCUfdQ',
-//	            v: '3.17',
-//	            libraries: 'weather,geometry,visualization'
-//	        });
-//	    }]
-//	);
 window.Require = {
     /// <summary>Checks value(s) for null, undefined, or truthyness</summary>
 
@@ -176,8 +152,9 @@ angular
         }]
     );
 angular.module('foodbankfarm')
-    .controller('FilterController', ['$scope','$rootScope', function ($scope,$rootScope) {
+    .controller('FilterController', ['$scope','LocationRepository', function ($scope) {
 
+    	
     	$scope.shouldShowSpecialtyProducts = false;
     	
     	$scope.checkboxModel = {
@@ -200,92 +177,26 @@ angular.module('foodbankfarm')
     }]);
 
 
-angular.module('foodbankfarm.directives')
-.directive('filterView', [function () {
-	return {
-		templateUrl: 'dist/directives/filter.html',
-        restrict: 'E',
-        transclude: true,
-        replace: true
-    };
-}]);
-
-
-angular.module('foodbankfarm')
-    .controller('DetailController', [
-        '$q',
-        '$rootScope',
-        '$routeParams',
-        '$scope',
-        function ($q,$rootScope,$route,$scope) {
-        	$scope.farm ={};
-            var farmSelected = _($rootScope.locations).findWhere(function (farm) { return farm.id== $route.id; });
-        	$scope.farm = farmSelected;
-        	var filterTemplate = $templateCache.get('filter.html');
-        }
-    ]);
 angular.module('foodbankfarm')
     .controller('HomeController', [
         '$scope',
         function ($scope) {
             $scope.responsible = {
                 name: 'Aziz',
-                email: 'dummy@email.email'
+                email: 'abdulaziz.ergashev@gmail.com'
             };
         }
     ]);
 angular.module('foodbankfarm')
     .controller('ListingController', [
-        '$rootScope',
         '$scope',
-        '$location',
         'LocationRepository',
-        function ($rootScope,$scope,$location,locationRepository) {
+        function ($scope,locationRepository) {
             $scope.locations = [];
-            $rootScope.locations = [];
             
             //retrieving list of locations
-            locationRepository.list('queryString').then(function (result) {
+            locationRepository.list('anystring').then(function (result) {
                 $scope.locations = result.data;
-                $rootScope.locations = result.data;
             });
-            
-            $scope.viewDetail  = function(id){
-            	 $location.path('/detail/' + id);
-            };
-            
-            
-        }]);
-   
-angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
-    .controller('MapController', 
-    		['$rootScope',
-             '$scope',
-             function($rootScope,$scope) {
-    		$scope.locations = $rootScope.locations;
-//            LocationRepository.list('queryString').then(function (result) {
-//                $scope.locations = result.data;
-//            });
-
-	        $scope.map = {center: {latitude: 40.0010204, longitude: -75.8069082 }, zoom: 10 };// chester county long lat
-	        $scope.options = {scrollwheel: false};
-	        $scope.farmmarkers = [];
-	        $scope.$watch(function() {
-	            return $scope.map.bounds;
-	          }, function(nv, ov) {
-	            // Only need to regenerate once
-	              var markers = [];
-	              for (var i = 0; i < $scope.locations.length; i++) {
-	                  var ret = {
-	                	        latitude:  $scope.locations[i].longitude,
-	                	        longitude:  $scope.locations[i].latitude,
-	                	        title:  $scope.locations[i].farmName,
-	                	        id:i
-	                	      };
-
-	                markers.push(ret);
-	              }
-	              $scope.farmmarkers = markers;
-	          }, true);
-
-    }]);
+        }
+    ]);

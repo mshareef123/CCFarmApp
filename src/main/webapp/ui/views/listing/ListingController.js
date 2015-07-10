@@ -17,7 +17,5 @@ angular.module('foodbankfarm')
             $scope.viewDetail  = function(id){
             	 $location.path('/detail/' + id);
             };
-            
-            
-        }]);
-   
+        }
+    ]);
