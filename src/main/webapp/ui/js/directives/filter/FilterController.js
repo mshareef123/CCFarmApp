@@ -1,7 +1,6 @@
 angular.module('foodbankfarm')
-    .controller('FilterController', ['$scope','LocationRepository', function ($scope) {
+    .controller('FilterController', ['$scope','$rootScope', function ($scope,$rootScope) {
 
-    	
     	$scope.shouldShowSpecialtyProducts = false;
     	
     	$scope.checkboxModel = {
@@ -22,4 +21,15 @@ angular.module('foodbankfarm')
         };
         	
     }]);
+
+
+angular.module('foodbankfarm.directives')
+.directive('filterView', [function () {
+	return {
+		templateUrl: 'dist/directives/filter.html',
+        restrict: 'E',
+        transclude: true,
+        replace: true
+    };
+}]);
 

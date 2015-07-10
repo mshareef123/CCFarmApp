@@ -1,0 +1,31 @@
+<div>
+<h1>Search address or place</h1>
+<input type="text" name="filterSearchField"><button>Help</button><br>
+    
+<h1>Filter</h1>
+    
+<form ng-controller="FilterController">
+  	<input type="checkbox" ng-model="checkboxModel.allField">All<br>
+    	
+   	<input type="checkbox" ng-model="checkboxModel.specialtyProductField">Specialty Products  
+   	<button class="linkButton" ng-model="shouldShowSpecialtyProducts" aria-label="Toggle ngHide" ng-click="shouldShowSpecialtyProducts = !shouldShowSpecialtyProducts">Refine</button><br>
+    		
+   		<div>
+				<div class="animate-show" ng-show="shouldShowSpecialtyProducts">
+						<input type="checkbox" ng-model="checkboxModel.honeyField">Honey<br>
+						<input type="checkbox" ng-model="checkboxModel.treeFarmField">Tree farm<br>
+						<input type="checkbox" ng-model="checkboxModel.milkAndIceCreamField">Milk &amp; ice cream<br>
+						<input type="checkbox" ng-model="checkboxModel.cheeseField">Cheesemakers<br>
+						<input type="checkbox" ng-model="checkboxModel.mushroomField">Mushrooms<br>
+						<input type="checkbox" ng-model="checkboxModel.wineField">Winery<br>
+				</div>
+		</div>
+			
+    <input type="checkbox" ng-model="checkboxModel.farmOutletField">Farm outlets<br>
+    <input type="checkbox" ng-model="checkboxModel.csaField">CSAs<br>
+    <input type="checkbox" ng-model="checkboxModel.farmersMarketField">Farmers' Markets<br>
+    <input type="checkbox" ng-model="checkboxModel.retailOutletField">Retail Outlets<br>
+    <input type="checkbox" ng-model="checkboxModel.foodBankPartnerField">Food bank partners<br>
+    <input type="checkbox" ng-model="checkboxModel.acceptSNAPField">Accepts SNAP<br>
+</form>    
+</div>
