@@ -6,10 +6,10 @@ How to build the code
 * Run a command shell in Administrator mode from the root directory of the project
 * Add Global Environment Variable under advanced system settings by adding variable 
 *	name:NODE_PATH value:AppData%\npm\node_modules
-* In command shell call: npm i (it will install node js required modules under nod_modules directory)
-* Run a command shell in Administrator mode and call gulp (from the root directory of the project).
+* In command shell call: npm i (it will install node js required modules under node_modules directory)
+* Run a command shell in Administrator mode and run "gulp" command in command line (from the root directory of the project).
 * Create log  on top level (under src) to see jsHint output files
-* All dev code is under src/webapp/ui all server deplyed code is under src/webapp/dist  so you always make your changes under dev code, and gulp will automatically update dist folder.
+* All dev code is under src/webapp/ui all server deployed code is under src/webapp/dist  so you always make your changes under dev code, and gulp will automatically update dist folder.
 
 How to run the code
 ===================
@@ -27,10 +27,22 @@ How to work with Git
 
 * Download tortoise git from https://code.google.com/p/tortoisegit/
 * To checkout project git clone: https://github.com/mshareef123/CCFarmApp.git
-* Always pull code beforue pushing to git
+* Always pull code before pushing to git
 * If you have local changes save them into stash before pulling
-* After puling if you have stashed changes pop the stash and apply it if you have any conflicts resolve them before pushing
+* After pulling if you have stashed changes pop the stash and apply it if you have any conflicts resolve them before pushing
 * To submit your changes to repository "push" your changes
+* Do not check in files under /dist folder, and any changes that are related to node_modules or eclipse settings
+
+Third party JS libraries
+===================
+
+* you can find list of third party JS libraries under src/webapp/lib folder and search internet for more information about each one of them, below some discription about most usefull ones.
+
+* AngularJS (http://angularjs.org/) - HTML enhanced for web apps!
+
+* Lodash javascript library (https://lodash.com/) - A JavaScript utility library delivering consistency, modularity, performance, & extras. Useful working with list/arrays.
+
+* Angular Google Maps (http://angular-ui.github.io/angular-google-maps/) - Angular Google Maps is a set of directives (part of angular-ui) written in CoffeeScript and Javascript which integrate Google Maps in an AngularJS applications.
 
 DEV life server
 ===================
