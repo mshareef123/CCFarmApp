@@ -149,19 +149,6 @@ angular.module('foodbankfarm.repositories')
                 };
             }
     ]);
-angular
-    .module('foodbankfarm.directives')
-    .directive("content", [
-        function () {
-            return {
-                templateUrl: 'dist/directives/content.html',
-                restrict: 'E',
-                transclude: true,
-                replace: true,
-                scope: {}
-            };
-        }]
-    );
 angular.module('foodbankfarm.directives')
     .directive("appHeader", [
         function () {
@@ -175,32 +162,88 @@ angular.module('foodbankfarm.directives')
         }]
     );
 
-angular.module('foodbankfarm')
+angular
+    .module('foodbankfarm.directives')
+    .directive("content", [
+        function () {
+            return {
+                templateUrl: 'dist/directives/content.html',
+                restrict: 'E',
+                transclude: true,
+                replace: true,
+                scope: {}
+            };
+        }]
+    );
+angular.module('foodbankfarm') 
     .controller('FilterController', ['$scope','$rootScope', function ($scope,$rootScope) {
     	
-    	$rootScope.shouldShowSpecialtyProducts = false;
+    	$scope.shouldShowSpecialtyProducts = false;
+   		$scope.allCheckBoxSelected = false;     
+
+    	//Setup our categories so that we can build them the UI page.
+    	$rootScope.getCategoriesFromLocation = function () {
+    		var categories = [];
+    		for(var i = 0; i < $rootScope.locations.length; i++) {
+       			var currentFarm = $rootScope.locations[i];
+       			categories = _.union(categories, currentFarm.specialities);
+       		}  
+    
+    		$rootScope.filterCheckBoxes = [];
+        	for (var i = 0; i < categories.length; i++) {
+        		var checkBoxObject = {label : categories[i] , isSelected: false};
+        		$rootScope.filterCheckBoxes.push(checkBoxObject);
+        	}
+    	};  
     	
-    	$rootScope.checkboxModel = {
-    			allField : false,
-        		specialtyProductField : false,
-        		farmOutletField : false,
-        		csaField : false,
-        		farmersMarketField : false,
-        		retailOutletField : false,
-        		foodBankPartnerField : false,
-        		acceptSNAPField : false,
-        		honeyField : false,
-        		treeFarmField : false,
-        		milkAndIceCreamField : false,
-        		cheeseField : false,
-        		mushroomField : false,
-        		wineField : false
-        };
-        	
+    	//Toggles all the checkboxes selected or not when you toggle all
+    	$scope.allCheckBoxChanged = function () {     
+    		var setterValue = false;
+    		if($scope.allCheckBoxSelected) {
+    			setterValue = true;
+    		} 
+    		
+    		for (var i = 0; i < $rootScope.filterCheckBoxes.length; i++) {
+    			var currentBox = $rootScope.filterCheckBoxes[i];
+    			currentBox.isSelected = setterValue;
+        	}
+    		$scope.checkBoxChanged();
+    	}	 
+    	
     	$scope.checkBoxChanged = function () {
-    		alert("hi");
-    	}
-    }]);
+    		var allFilters = angular.copy($rootScope.filterCheckBoxes);
+    		var currentFilters = _.remove(allFilters, function(filter) {
+    			  return filter.isSelected == true;
+    		}); 
+    		
+    		//Okay now we need to just get the labels...probably a better way to do this, couldn't think of one at the moment so this'll do for now.
+    		var filterLabels = [];
+    		for(var i = 0; i < currentFilters.length; i++) {
+    			var currentFilterLabel = currentFilters[i].label;
+    			filterLabels.push(currentFilterLabel);
+    		}
+    		
+    		//Our actual filtering is rather simple - we will just intersect the specialties on each product with our filter labels, and if the intersection
+    		//isn't empty we know we found a product in our filter range.  So we just add it to our result set.
+    		var filteredLocations = [];
+    		for(var i = 0; i < $rootScope.locations.length; i++) {
+    			var currentLocation = $rootScope.locations[i];
+    			var intersectedProducts = _.intersection(currentLocation.specialities, filterLabels)
+    			if(intersectedProducts.length > 0) {
+    				filteredLocations.push(currentLocation);
+    			}
+    		}
+    		
+    		//This little check is for the condition when you turned off all the filters and we need to go back to basic state
+    		if(currentFilters.length != 0) {
+    			$rootScope.filteredLocations = filteredLocations;
+    		} else {
+    			$rootScope.filteredLocations = angular.copy($rootScope.locations);
+    		}
+
+    	};
+    	
+    }]); 
 
 angular.module('foodbankfarm.directives')
 .directive("filterView", [
@@ -252,8 +295,10 @@ angular.module('foodbankfarm')
             locationRepository.list('queryString').then(function (result) {
                 $scope.locations = result.data;
                 $rootScope.locations = result.data;
-            });
-            
+                $rootScope.filteredLocations = result.data;
+                $rootScope.getCategoriesFromLocation();
+            });  
+             
             $scope.viewDetail  = function(id){
             	 $location.path('/detail/' + id);
             };
@@ -272,20 +317,41 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
 	        $scope.map = {center: {latitude: 40.0010204, longitude: -75.8069082 }, zoom: 10 };// chester county long lat
 	        $scope.options = {scrollwheel: false};
 	        $scope.farmmarkers = [];
+	        
+	        var createMarker = function (i, locations,idKey) {
+                var ret = {
+            	        latitude:  locations[i].longitude,
+            	        longitude:  locations[i].latitude,
+            	        title:  locations[i].farmName,
+                        show: false,
+            	      };
+              ret.onClick = function() {
+                  ret.show = !ret.show;
+	              window.console.log("Clicked!");
+
+              };
+              ret[idKey] = i;
+              return ret;
+	        };
+	        
 	        $scope.$watch(function() {
 	            return $scope.map.bounds;
 	          }, function(nv, ov) {
 	            // Only need to regenerate once
 	              var markers = [];
 	              for (var i = 0; i < $scope.locations.length; i++) {
-	                  var ret = {
-	                	        latitude:  $scope.locations[i].longitude,
-	                	        longitude:  $scope.locations[i].latitude,
-	                	        title:  $scope.locations[i].farmName,
-	                	        id:i
-	                	      };
-
-	                markers.push(ret);
+//	                  var ret = {
+//	                	        latitude:  $scope.locations[i].longitude,
+//	                	        longitude:  $scope.locations[i].latitude,
+//	                	        title:  $scope.locations[i].farmName,
+//	                            show: false,
+//	                	      };
+//	                  ret.onClick = function() {
+//	                      ret.show = !ret.show;
+//	                  };
+//	                  ret["id"] = i;
+//
+	                markers.push(createMarker(i, $scope.locations,'id'));
 	              }
 	              $scope.farmmarkers = markers;
 	          }, true);

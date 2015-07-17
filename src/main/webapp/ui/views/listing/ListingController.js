@@ -13,8 +13,10 @@ angular.module('foodbankfarm')
             locationRepository.list('queryString').then(function (result) {
                 $scope.locations = result.data;
                 $rootScope.locations = result.data;
-            });
-            
+                $rootScope.filteredLocations = result.data;
+                $rootScope.getCategoriesFromLocation();
+            });  
+             
             $scope.viewDetail  = function(id){
             	 $location.path('/detail/' + id);
             };

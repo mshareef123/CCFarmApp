@@ -5,12 +5,20 @@
 <h1>Filter</h1>
     
 <form ng-controller="FilterController">
-	<input type="checkbox" ng-model="checkboxModel.allField" ng-changed="checkBoxChanged()">All<br>
-    	
-    <input type="checkbox" ng-model="checkboxModel.specialtyProductField">Specialty Products  
+	<li>
+		<input type="checkbox" ng-model="allCheckBoxSelected" ng-change="allCheckBoxChanged()">All<br>
+    </li>
+    
+     <li ng-repeat="checkBox in filterCheckBoxes | orderBy : 'label'">
+     		<input type="checkbox" ng-model="checkBox.isSelected" ng-change="checkBoxChanged()">{{checkBox.label}}<br>
+     </li>   
+    
+    
+    <!--  I won't immediately remove this but I really don't know how I can tell a specialty product from a normal one in current state. -->
+    <!--
+    <input type="checkbox" ng-model="checkboxModel.specialtyProductField">Specialty Products
     <button class="linkButton" ng-model="shouldShowSpecialtyProducts" aria-label="Toggle ngHide" ng-click="shouldShowSpecialtyProducts = !shouldShowSpecialtyProducts">Refine</button><br>
-    		
-    	<div>
+    	 <div>
   				<div class="animate-show" ng-show="shouldShowSpecialtyProducts">
   						<input type="checkbox" ng-model="checkboxModel.honeyField">Honey<br>
   						<input type="checkbox" ng-model="checkboxModel.treeFarmField">Tree farm<br>
@@ -19,13 +27,8 @@
   						<input type="checkbox" ng-model="checkboxModel.mushroomField">Mushrooms<br>
   						<input type="checkbox" ng-model="checkboxModel.wineField">Winery<br>
   				</div>
-		</div>
+		</div>  -->
 			
-    <input type="checkbox" ng-model="checkboxModel.farmOutletField">Farm outlets<br>
-    <input type="checkbox" ng-model="checkboxModel.csaField">CSAs<br>
-    <input type="checkbox" ng-model="checkboxModel.farmersMarketField">Farmers' Markets<br>
-    <input type="checkbox" ng-model="checkboxModel.retailOutletField">Retail Outlets<br>
-    <input type="checkbox" ng-model="checkboxModel.foodBankPartnerField">Food bank partners<br>
-    <input type="checkbox" ng-model="checkboxModel.acceptSNAPField">Accepts SNAP<br>
 </form>   
 </div> 
+ 
