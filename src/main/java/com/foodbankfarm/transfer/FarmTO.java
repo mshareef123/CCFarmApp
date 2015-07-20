@@ -12,6 +12,7 @@ public class FarmTO {
 	private boolean  foodBankPartner;
 	private boolean acceptsSNAPEBT;
 	private String[] specialities;
+	private String[] products;
 	private Double longitude;
 	private Double latitude;
 	
@@ -105,6 +106,12 @@ public class FarmTO {
 	}
 	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
+	}
+	public String[] getProducts() {
+		return products;
+	}
+	public void setProducts(String[] products) {
+		this.products = products;
 	}
 
 	

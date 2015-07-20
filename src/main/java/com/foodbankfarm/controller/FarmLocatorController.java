@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.foodbankfarm.transfer.FarmTO;
+import com.foodbankfarm.xlsxreadwrite.XLSXReader;
 
 @RestController("farmLocatorController")
 public class FarmLocatorController {
@@ -20,7 +21,10 @@ public class FarmLocatorController {
 		
 		return getMockFarms();
 	}
-	
+	private List<FarmTO> getFarmsFromDB(){
+		XLSXReader reader = new XLSXReader();
+		return reader.parseFarms();
+	}
 	private List<FarmTO> getMockFarms(){
 		/**************** getting long and lat from following google geocoding api******************
 		* http://maps.googleapis.com/maps/api/geocode/json?address=%223226%20Limestone%20Rd.,Cochranville,PA%22&sensor=false
