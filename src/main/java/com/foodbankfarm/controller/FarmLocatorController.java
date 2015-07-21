@@ -19,7 +19,7 @@ public class FarmLocatorController {
 	@RequestMapping(value = "/listing")
 	public List<FarmTO> getFarmlisting(){
 		
-		return getMockFarms();
+		return getFarmsFromDB();
 	}
 	private List<FarmTO> getFarmsFromDB(){
 		XLSXReader reader = new XLSXReader();
@@ -68,7 +68,7 @@ public class FarmLocatorController {
 
 		farms.add(farm);
 
-		farm = new FarmTO(4,"Anselma Farmers’ and Artisans’ Market", "1730 Conestoga Rd.", new String[]{"cheese", "eggs", "fruit", "meat", "vegetables", "Farmers' Market"});
+		farm = new FarmTO(4,"Anselma Farmersï¿½ and Artisansï¿½ Market", "1730 Conestoga Rd.", new String[]{"cheese", "eggs", "fruit", "meat", "vegetables", "Farmers' Market"});
 		farm.setWebsite("www.anselmamill.org");
 		farm.setPhone("610-827-1906");
 		farm.setZip("19425");

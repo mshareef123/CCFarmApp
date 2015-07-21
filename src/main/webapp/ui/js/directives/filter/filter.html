@@ -13,21 +13,18 @@
      		<input type="checkbox" ng-model="checkBox.isSelected" ng-change="checkBoxChanged()">{{checkBox.label}}<br>
      </li>   
     
+    <li>
+		<input type="checkbox" ng-model="allSpecialitySelected" ng-change="allSpecialityChanged()">Speciality Products
+		<!-- If check to see if there ARE any specialties??? -->
+	    <button class="linkButton" ng-model="shouldShowSpecialityProducts" aria-label="Toggle ngHide" ng-click="shouldShowSpecialityProducts = !shouldShowSpecialityProducts">Refine</button><br>
+    </li>
     
-    <!--  I won't immediately remove this but I really don't know how I can tell a specialty product from a normal one in current state. -->
-    <!--
-    <input type="checkbox" ng-model="checkboxModel.specialtyProductField">Specialty Products
-    <button class="linkButton" ng-model="shouldShowSpecialtyProducts" aria-label="Toggle ngHide" ng-click="shouldShowSpecialtyProducts = !shouldShowSpecialtyProducts">Refine</button><br>
-    	 <div>
-  				<div class="animate-show" ng-show="shouldShowSpecialtyProducts">
-  						<input type="checkbox" ng-model="checkboxModel.honeyField">Honey<br>
-  						<input type="checkbox" ng-model="checkboxModel.treeFarmField">Tree farm<br>
-  						<input type="checkbox" ng-model="checkboxModel.milkAndIceCreamField">Milk &amp; ice cream<br>
-  						<input type="checkbox" ng-model="checkboxModel.cheeseField">Cheesemakers<br>
-  						<input type="checkbox" ng-model="checkboxModel.mushroomField">Mushrooms<br>
-  						<input type="checkbox" ng-model="checkboxModel.wineField">Winery<br>
-  				</div>
-		</div>  -->
+    <div class="animate-show" ng-show="shouldShowSpecialityProducts">
+    	<li ng-repeat="checkBox in specialityCheckBoxes | orderBy : 'label'">
+     			<input type="checkbox" ng-model="checkBox.isSelected" ng-change="checkBoxChanged()">{{checkBox.label}}<br>
+    	</li>
+    </div>
+    
 			
 </form>   
 </div> 

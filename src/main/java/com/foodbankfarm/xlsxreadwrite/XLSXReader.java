@@ -25,10 +25,10 @@ public class XLSXReader {
 	private static int ZIP_COL = 4;
 	private static int PHONE_COL = 5;
 	private static int WEBSITE_COL = 6;
-	private static int SPECIALITIES_COL = 7;
-	private static int PRODUCTS_COL = 9;
-	private static int LATITUDE_COL = 10;
-	private static int LONGITUDE_COL = 11;
+	private static int PRODUCTS_COL = 7;
+	private static int SPECIALTIES_COL = 8;
+	private static int LATITUDE_COL = 9;
+	private static int LONGITUDE_COL = 10;
 	
 	/*
 	 0 Farm/Business Name	
@@ -38,15 +38,15 @@ public class XLSXReader {
 	 4 Zip	
 	 5 Phone	
 	 6 Website	
-	 7 Specialties 	
-	 8 Products	
+	 7 Products
+	 8 Specialities 	
 	 9 Latitude	
 	 10 Longitude
 
 	 */
 	public List<FarmTO> parseFarms() { 
 		List<FarmTO> farms = new ArrayList<FarmTO>();
-		File myFile = new File("resources/FarmAppData.xlsx");
+		File myFile = new File("/Users/IandR/Documents/foodbankfarm/CCFarmApp/src/main/resources/FarmAppData.xlsx");
 		try {
 			FileInputStream fis = new FileInputStream(myFile);
 			XSSFWorkbook workBook = new XSSFWorkbook (fis);
@@ -57,7 +57,8 @@ public class XLSXReader {
 			while (rowIterator.hasNext()) { 
 				FarmTO farm = new FarmTO();
 				Row row = rowIterator.next(); 
-				String farmName = row.getCell(NAME_COL).getStringCellValue();			
+				String farmName = row.getCell(NAME_COL).getStringCellValue();	
+				if(!farmName.trim().equals("")){
 				String street = row.getCell(STREET_COL).getStringCellValue();
 				String city = row.getCell(CITY_COL).getStringCellValue();
 				String state = row.getCell(STATE_COL).getStringCellValue();
@@ -70,27 +71,35 @@ public class XLSXReader {
 				}
 				String phone = row.getCell(PHONE_COL).getStringCellValue();
 				String website = row.getCell(WEBSITE_COL).getStringCellValue();
-				String specialities = row.getCell(SPECIALITIES_COL).getStringCellValue();
+				String specialities = row.getCell(SPECIALTIES_COL).getStringCellValue();
 				String products = row.getCell(PRODUCTS_COL).getStringCellValue();
 				Cell latCell = row.getCell(LATITUDE_COL);
-				Double lat = latCell.getNumericCellValue();
+				if(latCell.getCellType() == Cell.CELL_TYPE_NUMERIC){
+					Double lat = Double.valueOf(latCell.getStringCellValue());
+					farm.setLatitude(lat);
+
+				}
 				Cell lngCell = row.getCell(LONGITUDE_COL);
-				Double lng = lngCell.getNumericCellValue();
+				if(lngCell.getCellType() == Cell.CELL_TYPE_NUMERIC){
+				Double lng = Double.valueOf(lngCell.getStringCellValue());
+				farm.setLongitude(lng);
+				}
 				
 				farm.setFarmName(farmName);
 				farm.setAddress(street);
 				farm.setCity(city);
 				farm.setId(id);
-				farm.setLatitude(lat);
-				farm.setLongitude(lng);
 				farm.setPhone(phone);
-				farm.setProducts(products.split(","));
-				farm.setSpecialities(specialities.split(","));
+				farm.setProducts(cleanData(products));
+				farm.setSpecialities(cleanData(specialities));
 				farm.setState(state);
 				farm.setWebsite(website);
 				farm.setZip(zip);
 				farms.add(farm);
 				id++;
+				}else{
+					break;
+				}
 			}
 			//write(myFile, workBook);
 			workBook.close();
@@ -104,7 +113,16 @@ public class XLSXReader {
 		
 		return farms;
 	}
-	
+	private String[] cleanData(String input){
+		String[] list = input.split(",");
+		String result[] = new String[list.length];
+		int i = 0;
+		for(String str:list){
+			result[i] = str.trim().toLowerCase();
+			i++;
+		}
+		return result;
+	}
 	private void write(File file, XSSFWorkbook workBook) { 
 		FileOutputStream outputStream;
 		try {
