@@ -7,7 +7,7 @@ angular.module('foodbankfarm.map',[
 	        GoogleMapApiProviders.configure({
 	            key: 'AIzaSyCTwkFSfmpbEPFittMwuiS-Uj6eONCUfdQ',
 	            v: '3.17',
-	            libraries: 'weather,geometry,visualization'
+	            libraries: 'places,weather,geometry,visualization'
 	        });
 	    }]);
 var foodbankfarm = angular.module('foodbankfarm', [

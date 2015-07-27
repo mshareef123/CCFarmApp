@@ -10,6 +10,13 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
 
 	        $scope.map = {center: {latitude: 40.0010204, longitude: -75.8069082 }, zoom: 10 };// chester county long lat
 	        $scope.options = {scrollwheel: false};
+	        
+	        var events = {
+	                places_changed: function (searchBox) {}
+	              }
+	              $scope.searchbox = { template:'searchbox.tpl.html', events:events};
+
+	        
 	        $scope.farmmarkers = [];
 	        
 	        var createMarker = function (i, locations,idKey) {

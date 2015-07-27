@@ -74,16 +74,19 @@ public class XLSXReader {
 				String specialities = row.getCell(SPECIALTIES_COL).getStringCellValue();
 				String products = row.getCell(PRODUCTS_COL).getStringCellValue();
 				Cell latCell = row.getCell(LATITUDE_COL);
-				if(latCell.getCellType() == Cell.CELL_TYPE_NUMERIC){
+				//if(latCell.getCellType() == Cell.CELL_TYPE_NUMERIC){
+				if(!latCell.getStringCellValue().trim().equals("")){
 					Double lat = Double.valueOf(latCell.getStringCellValue());
 					farm.setLatitude(lat);
-
 				}
+				//}
 				Cell lngCell = row.getCell(LONGITUDE_COL);
-				if(lngCell.getCellType() == Cell.CELL_TYPE_NUMERIC){
+				if(!lngCell.getStringCellValue().trim().equals("")){
+				//if(lngCell.getCellType() == Cell.CELL_TYPE_NUMERIC){
 				Double lng = Double.valueOf(lngCell.getStringCellValue());
 				farm.setLongitude(lng);
 				}
+				//}
 				
 				farm.setFarmName(farmName);
 				farm.setAddress(street);

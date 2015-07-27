@@ -130,10 +130,12 @@ Nicholas McCready - https://twitter.com/nmccready
       transport: 'https',
       isGoogleMapsForWork: false,
       china: false,
-      v: '3',
-      libraries: '',
       language: 'en',
-      sensor: 'false'
+      sensor: 'false',
+      key: 'AIzaSyCTwkFSfmpbEPFittMwuiS-Uj6eONCUfdQ',
+      v: '3.17',
+      libraries: 'places,weather,geometry,visualization'
+
     };
     this.configure = function(options) {
       angular.extend(this.options, options);

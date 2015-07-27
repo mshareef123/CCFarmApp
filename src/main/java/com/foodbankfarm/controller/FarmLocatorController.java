@@ -19,7 +19,7 @@ public class FarmLocatorController {
 	@RequestMapping(value = "/listing")
 	public List<FarmTO> getFarmlisting(){
 		
-		return getFarmsFromDB();
+		return getMockFarms();
 	}
 	private List<FarmTO> getFarmsFromDB(){
 		XLSXReader reader = new XLSXReader();
