@@ -8,7 +8,7 @@ angular.module('foodbankfarm.map',[
 	        GoogleMapApiProviders.configure({
 	            key: 'AIzaSyCTwkFSfmpbEPFittMwuiS-Uj6eONCUfdQ',
 	            v: '3.17',
-	            libraries: 'weather,geometry,visualization'
+	            libraries: 'places,weather,geometry,visualization'
 	        });
 	    }]);
 var foodbankfarm = angular.module('foodbankfarm', [
@@ -302,8 +302,9 @@ angular.module('foodbankfarm')
         '$scope',
         function ($q,$rootScope,$route,$scope) {
         	$scope.farm ={};
-            var farmSelected = _($rootScope.locations).findWhere(function (farm) { return farm.id== $route.id; });
-        	$scope.farm = farmSelected;
+        	var routeID = Number($route.id);
+            var farmSelected = _.findWhere($rootScope.locations, {'id' : routeID});
+            $scope.farm = farmSelected;
         	
         }
     ]);
@@ -317,60 +318,6 @@ angular.module('foodbankfarm')
             };
         }
     ]);
-angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
-    .controller('MapController', 
-    		['$rootScope',
-             '$scope',
-             function($rootScope,$scope) {
-    		$scope.locations = $rootScope.locations;
-//            LocationRepository.list('queryString').then(function (result) {
-//                $scope.locations = result.data;
-//            });
-
-	        $scope.map = {center: {latitude: 40.0010204, longitude: -75.8069082 }, zoom: 10 };// chester county long lat
-	        $scope.options = {scrollwheel: false};
-	        $scope.farmmarkers = [];
-	        
-	        var createMarker = function (i, locations,idKey) {
-                var ret = {
-            	        latitude:  locations[i].longitude,
-            	        longitude:  locations[i].latitude,
-            	        title:  locations[i].farmName,
-                        show: false,
-            	      };
-              ret.onClick = function() {
-                  ret.show = !ret.show;
-	              window.console.log("Clicked!");
-
-              };
-              ret[idKey] = i;
-              return ret;
-	        };
-	        
-	        $scope.$watch(function() {
-	            return $scope.map.bounds;
-	          }, function(nv, ov) {
-	            // Only need to regenerate once
-	              var markers = [];
-	              for (var i = 0; i < $scope.locations.length; i++) {
-//	                  var ret = {
-//	                	        latitude:  $scope.locations[i].longitude,
-//	                	        longitude:  $scope.locations[i].latitude,
-//	                	        title:  $scope.locations[i].farmName,
-//	                            show: false,
-//	                	      };
-//	                  ret.onClick = function() {
-//	                      ret.show = !ret.show;
-//	                  };
-//	                  ret["id"] = i;
-//
-	                markers.push(createMarker(i, $scope.locations,'id'));
-	              }
-	              $scope.farmmarkers = markers;
-	          }, true);
-
-    }]);
-
 angular.module('foodbankfarm')
     .controller('ListingController', [
         '$rootScope',
@@ -395,3 +342,64 @@ angular.module('foodbankfarm')
             };
         }
     ]);
+angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
+    .controller('MapController', 
+    		['$rootScope',
+             '$scope',
+             function($rootScope,$scope) {
+              $scope.shouldShowFilter = false;
+    		
+//            LocationRepository.list('queryString').then(function (result) {
+//                $scope.locations = result.data;
+//            });
+
+	        $scope.map = {center: {latitude: 40.0010204, longitude: -75.8069082 }, zoom: 10 };// chester county long lat
+	        $scope.options = {scrollwheel: false};
+	        
+	        var events = {
+	                places_changed: function (searchBox) {}
+	              }
+	              $scope.searchbox = { template:'searchbox.tpl.html', events:events};
+
+	        
+	        $scope.farmmarkers = [];
+	        
+	        var createMarker = function (i, locations,idKey) {
+                var ret = {
+            	        latitude:  locations[i].longitude,
+            	        longitude:  locations[i].latitude,
+            	        title:  locations[i].farmName,
+                        show: false,
+            	      };
+              ret.onClick = function() {
+                  ret.show = !ret.show;
+	              window.console.log("Clicked!");
+
+              };
+              ret[idKey] = i;
+              return ret;
+	        };
+	        
+	        $scope.$watch(function() {
+	            return $scope.map.bounds;
+	          }, function(nv, ov) {
+	            // Only need to regenerate once
+	              var markers = [];
+	              for (var i = 0; i < $rootScope.filteredLocations.length; i++) {
+//	                  var ret = {
+//	                	        latitude:  $scope.locations[i].longitude,
+//	                	        longitude:  $scope.locations[i].latitude,
+//	                	        title:  $scope.locations[i].farmName,
+//	                            show: false,
+//	                	      };
+//	                  ret.onClick = function() {
+//	                      ret.show = !ret.show;
+//	                  };
+//	                  ret["id"] = i;
+//
+	                markers.push(createMarker(i, $rootScope.filteredLocations,'id'));
+	              }
+	              $scope.farmmarkers = markers;
+	          }, true);
+
+    }]);

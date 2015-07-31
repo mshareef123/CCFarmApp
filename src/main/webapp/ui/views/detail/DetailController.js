@@ -6,8 +6,9 @@ angular.module('foodbankfarm')
         '$scope',
         function ($q,$rootScope,$route,$scope) {
         	$scope.farm ={};
-            var farmSelected = _($rootScope.locations).findWhere(function (farm) { return farm.id== $route.id; });
-        	$scope.farm = farmSelected;
+        	var routeID = Number($route.id);
+            var farmSelected = _.findWhere($rootScope.locations, {'id' : routeID});
+            $scope.farm = farmSelected;
         	
         }
     ]);

@@ -3,7 +3,8 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
     		['$rootScope',
              '$scope',
              function($rootScope,$scope) {
-    		$scope.locations = $rootScope.locations;
+              $scope.shouldShowFilter = false;
+    		
 //            LocationRepository.list('queryString').then(function (result) {
 //                $scope.locations = result.data;
 //            });
@@ -40,7 +41,7 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
 	          }, function(nv, ov) {
 	            // Only need to regenerate once
 	              var markers = [];
-	              for (var i = 0; i < $scope.locations.length; i++) {
+	              for (var i = 0; i < $rootScope.filteredLocations.length; i++) {
 //	                  var ret = {
 //	                	        latitude:  $scope.locations[i].longitude,
 //	                	        longitude:  $scope.locations[i].latitude,
@@ -52,7 +53,7 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
 //	                  };
 //	                  ret["id"] = i;
 //
-	                markers.push(createMarker(i, $scope.locations,'id'));
+	                markers.push(createMarker(i, $rootScope.filteredLocations,'id'));
 	              }
 	              $scope.farmmarkers = markers;
 	          }, true);
