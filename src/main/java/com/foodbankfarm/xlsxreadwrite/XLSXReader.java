@@ -82,7 +82,7 @@ public class XLSXReader {
 				latCell.setCellType(Cell.CELL_TYPE_STRING); 
 //				if(latCell.getCellType() == Cell.CELL_TYPE_NUMERIC){
 				if(!latCell.getStringCellValue().trim().equals("")){
-					System.out.println(latCell.getStringCellValue());
+//					System.out.println(latCell.getStringCellValue());
 					Double lat = Double.valueOf(latCell.getStringCellValue());
 					farm.setLatitude(lat);
 				}
@@ -92,7 +92,7 @@ public class XLSXReader {
 
 				if(!lngCell.getStringCellValue().trim().equals("")){
 //				if(lngCell.getCellType() == Cell.CELL_TYPE_NUMERIC){
-					System.out.println(lngCell.getStringCellValue());
+//					System.out.println(lngCell.getStringCellValue());
 
 				Double lng = Double.valueOf(lngCell.getStringCellValue());
 				farm.setLongitude(lng);

@@ -22,8 +22,8 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
 	        
 	        var createMarker = function (i, locations,idKey) {
                 var ret = {
-            	        latitude:  locations[i].longitude,
-            	        longitude:  locations[i].latitude,
+            	        latitude:  locations[i].latitude,
+            	        longitude:  locations[i].longitude,
             	        title:  locations[i].farmName,
                         show: false,
             	      };
