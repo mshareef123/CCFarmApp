@@ -1,21 +1,22 @@
 <app_Header></app_Header>
 <content>
-    <legend>Farm Detail</legend>
-    
-    <div class="list-group">
-	  	<a href="#" class="list-group-item">
-		    <h4 class="list-group-item-heading">{{farm.farmName}} - {{farm.address}}</h4>
-			    <p class="list-group-item-text">
-			   		<p>{{farm.website}}</p>
-			   		<p>{{farm.city}}</p>
-					<p>{{farm.phone}}</p>
-					<p>{{farm.state}}</p>
-					<p>{{farm.zip}}</p>
-			   		<span ng-repeat="product in farm.specialities">
-			       		{{product}}
+    <div class="row">
+    	<div class="col-sm-8">
+    		<div class="panel panel-primary">
+    			<div class="panel-heading">
+    				<h3 class="panel-title">{{farm.farmName}}</h3>
+    			</div>
+    			<div class="panel-body">
+    				{{farm.address}}<br/>
+    				{{farm.city}},{{farm.state}},{{farm.zip}}<br>
+    				 <a href="{{farm.website}}">{{farm.website}}</a><br>
+    				{{farm.phone}}<br>
+    				<span ng-repeat="product in farm.specialities">
+			       		{{product}},
 			       </span>
-			    </p>
-	     </a>
-     </div>
-    
+    				
+    			</div>
+    		</div>
+    	</div>
+    </div>
 </content>

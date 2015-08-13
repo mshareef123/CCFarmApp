@@ -31,12 +31,12 @@
                 "./src/main/webapp/ui/lib/angular/angular-route.js",
                 "./src/main/webapp/ui/lib/angular/angular-sanitize.js",
                 "./src/main/webapp/ui/lib/angular/angular-touch.js",
+                "./src/main/webapp/ui/lib/jquery/jquery-2.1.3.js",
                 "./src/main/webapp/ui/lib/lodash/lodash.js",
                 "./src/main/webapp/ui/lib/bootstrap/bootstrap.js",
                 "./src/main/webapp/ui/lib/bootstrap/ui-bootstrap-0.9.0.js",
                 "./src/main/webapp/ui/lib/bootstrap/ui-bootstrap-tpls-0.9.0.js",
                 "./src/main/webapp/ui/lib/angular-google-maps/angular-google-maps.js",
-                "./src/main/webapp/ui/lib/jquery/jquery-2.1.3.js",
                 "!*.min.js",
                 "!/**/*.min.js"
             ],

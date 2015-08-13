@@ -44,6 +44,14 @@ foodbankfarm.config([
             	templateUrl: 'dist/views/detail.html',
             	controller: 'DetailController'
             })
+            .when('/info', {
+            	templateUrl: 'dist/views/info.html',
+            	controller: 'InfoController'
+            })
+            .when('/filterpage', {
+            	templateUrl: 'dist/views/filterpage.html',
+            })
+
             .otherwise({
                 templateUrl: 'dist/views/home.html',
                 controller: 'HomeController'

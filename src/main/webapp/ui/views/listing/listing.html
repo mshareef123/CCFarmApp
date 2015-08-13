@@ -1,14 +1,12 @@
 <app_Header></app_Header>
 <content>
-    <legend>Farm locations</legend>
-    
     <div class="list-group">
     	<div ng-repeat="farm in filteredLocations | orderBy: 'farmName'">
 	  	<a ng-click="viewDetail(farm.id)" class="list-group-item" >
 		    <h4 class="list-group-item-heading">{{farm.farmName}} - {{farm.address}}</h4>
 			    <p class="list-group-item-text">
 			   		<span ng-repeat="product in farm.specialities">
-			       		{{product}}
+			       		{{product}},
 			       </span>
 			    </p>  
 	     </a>
