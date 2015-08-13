@@ -1,0 +1,60 @@
+body {
+	padding-top: 20px; padding-bottom: 20px;
+}
+.header {
+	padding-right: 15px; padding-left: 15px;
+}
+.marketing {
+	padding-right: 15px; padding-left: 15px;
+}
+.footer {
+	padding-right: 15px; padding-left: 15px;
+}
+.header {
+	padding-bottom: 20px; border-bottom-color: rgb(229, 229, 229); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.header h3 {
+	line-height: 40px; margin-top: 0px; margin-bottom: 0px;
+}
+.footer {
+	color: rgb(119, 119, 119); padding-top: 19px; border-top-color: rgb(229, 229, 229); border-top-width: 1px; border-top-style: solid;
+}
+@media all and (min-width:768px)
+{
+.container {
+	max-width: 730px;
+}
+}
+.container-narrow > hr {
+	margin: 30px 0px;
+}
+.jumbotron {
+	text-align: center; border-bottom-color: rgb(229, 229, 229); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.jumbotron .btn {
+	padding: 14px 24px; font-size: 21px;
+}
+.marketing {
+	margin: 40px 0px;
+}
+.marketing p + h4 {
+	margin-top: 28px;
+}
+@media screen and (min-width:768px)
+{
+.header {
+	padding-right: 0px; padding-left: 0px;
+}
+.marketing {
+	padding-right: 0px; padding-left: 0px;
+}
+.footer {
+	padding-right: 0px; padding-left: 0px;
+}
+.header {
+	margin-bottom: 30px;
+}
+.jumbotron {
+	border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none;
+}
+}
