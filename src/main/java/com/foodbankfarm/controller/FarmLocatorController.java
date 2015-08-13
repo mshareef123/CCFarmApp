@@ -3,6 +3,9 @@ package com.foodbankfarm.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +15,9 @@ import com.foodbankfarm.xlsxreadwrite.XLSXReader;
 @RestController("farmLocatorController")
 public class FarmLocatorController {
 	
+	@Autowired
+	ServletContext context;
+
 	@RequestMapping(value = "/")
 	public String hi(){
 		return "hi";
@@ -19,11 +25,11 @@ public class FarmLocatorController {
 	@RequestMapping(value = "/listing")
 	public List<FarmTO> getFarmlisting(){
 		
-		return getMockFarms();
+		return getFarmsFromDB();
 	}
 	private List<FarmTO> getFarmsFromDB(){
 		XLSXReader reader = new XLSXReader();
-		return reader.parseFarms();
+		return reader.parseFarms(context);
 	}
 	private List<FarmTO> getMockFarms(){
 		/**************** getting long and lat from following google geocoding api******************

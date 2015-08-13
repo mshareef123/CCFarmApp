@@ -5,9 +5,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.servlet.ServletContext;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -44,12 +47,14 @@ public class XLSXReader {
 	 10 Longitude
 
 	 */
-	public List<FarmTO> parseFarms() { 
+	
+	public List<FarmTO> parseFarms(ServletContext context) { 
 		List<FarmTO> farms = new ArrayList<FarmTO>();
-		File myFile = new File("/Users/IandR/Documents/foodbankfarm/CCFarmApp/src/main/resources/FarmAppData.xlsx");
+		InputStream in = null;
+
 		try {
-			FileInputStream fis = new FileInputStream(myFile);
-			XSSFWorkbook workBook = new XSSFWorkbook (fis);
+ 		    in = context.getResourceAsStream("/WEB-INF/classes/FarmAppData.xlsx"); // example
+			XSSFWorkbook workBook = new XSSFWorkbook (in);
 			XSSFSheet sheet = workBook.getSheetAt(0);
 			Iterator<Row> rowIterator = sheet.iterator();
 			rowIterator.next();
@@ -74,15 +79,21 @@ public class XLSXReader {
 				String specialities = row.getCell(SPECIALTIES_COL).getStringCellValue();
 				String products = row.getCell(PRODUCTS_COL).getStringCellValue();
 				Cell latCell = row.getCell(LATITUDE_COL);
-				//if(latCell.getCellType() == Cell.CELL_TYPE_NUMERIC){
+				latCell.setCellType(Cell.CELL_TYPE_STRING); 
+//				if(latCell.getCellType() == Cell.CELL_TYPE_NUMERIC){
 				if(!latCell.getStringCellValue().trim().equals("")){
+					System.out.println(latCell.getStringCellValue());
 					Double lat = Double.valueOf(latCell.getStringCellValue());
 					farm.setLatitude(lat);
 				}
 				//}
 				Cell lngCell = row.getCell(LONGITUDE_COL);
+				lngCell.setCellType(Cell.CELL_TYPE_STRING); 
+
 				if(!lngCell.getStringCellValue().trim().equals("")){
-				//if(lngCell.getCellType() == Cell.CELL_TYPE_NUMERIC){
+//				if(lngCell.getCellType() == Cell.CELL_TYPE_NUMERIC){
+					System.out.println(lngCell.getStringCellValue());
+
 				Double lng = Double.valueOf(lngCell.getStringCellValue());
 				farm.setLongitude(lng);
 				}
