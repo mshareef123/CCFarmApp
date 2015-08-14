@@ -3,7 +3,7 @@
     <div class="list-group">
     	<div ng-repeat="farm in filteredLocations | orderBy: 'farmName'">
 	  	<a ng-click="viewDetail(farm.id)" class="list-group-item" >
-		    <h4 class="list-group-item-heading">{{farm.farmName}} - {{farm.address}}</h4>
+		    <h4 class="list-group-item-heading">{{farm.farmName}} - {{farm.city}}</h4>
 			    <p class="list-group-item-text">
 			   		<span ng-repeat="product in farm.specialities">
 			       		{{product}},

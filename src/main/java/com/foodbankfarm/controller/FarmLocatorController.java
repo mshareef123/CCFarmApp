@@ -17,15 +17,20 @@ public class FarmLocatorController {
 	
 	@Autowired
 	ServletContext context;
-
+	
+	private List<FarmTO> cachedFarmList;
+	
 	@RequestMapping(value = "/")
 	public String hi(){
 		return "hi";
 	}
 	@RequestMapping(value = "/listing")
 	public List<FarmTO> getFarmlisting(){
-		
-		return getFarmsFromDB();
+		if(cachedFarmList==null){
+			cachedFarmList = getFarmsFromDB();
+		}
+			
+		return cachedFarmList;
 	}
 	private List<FarmTO> getFarmsFromDB(){
 		XLSXReader reader = new XLSXReader();
