@@ -17,14 +17,21 @@ angular.module('foodbankfarm')
     
     		$rootScope.filterCheckBoxes = [];
     		$rootScope.specialityCheckBoxes = [];
+    		
         	for (var i = 0; i < products.length; i++) {
-        		var checkBoxObject = {label : products[i] , isSelected: false};
-        		$rootScope.filterCheckBoxes.push(checkBoxObject);
+        		var productLabel = products[i];
+        		if(productLabel.length > 0) {
+        			var checkBoxObject = {label : productLabel, isSelected: false};
+        			$rootScope.filterCheckBoxes.push(checkBoxObject);
+        		}
         	}
         	
         	for(var i = 0; i < specialities.length; i++) {
-        		var checkBoxObject = {label : specialities[i] , isSelected: false};
-        		$rootScope.specialityCheckBoxes.push(checkBoxObject);
+        		var specialtyLabel = specialities[i];
+        		if(specialtyLabel.length > 0) {
+        			var checkBoxObject = {label : specialities[i] , isSelected: false};
+        			$rootScope.specialityCheckBoxes.push(checkBoxObject);
+        		}
         	}
     	};  
     	

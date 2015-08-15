@@ -1,7 +1,7 @@
 <app_Header></app_Header>
 <content>
     <script type="text/ng-template" id="searchbox.tpl.html">
-        <input type="text" placeholder="Search Box">
+        <input type="text"  placeholder="Search Box" style="width:200px;">
     </script>
 
     <div id="map_canvas" ng-controller="MapController">
@@ -10,7 +10,14 @@
 
         <ui-gmap-markers models="farmmarkers" coords="'self'" icon="'icon'" ng-click="'onClick'">
             <ui-gmap-windows show="show">
-                <div ng-non-bindable>{{title}}</div>
+                <div ng-non-bindable>{{title}}  
+                	<p>
+			   			{{specialities}}
+			    	</p>
+                	<a ng-click="viewDetail(id)">
+                		Link to details page
+                	</a>
+                </div>
             </ui-gmap-windows>
         </ui-gmap-markers>    
     </ui-gmap-google-map>

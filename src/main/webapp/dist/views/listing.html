@@ -1,24 +1,35 @@
 <app_Header></app_Header>
 <content>
-    <legend>Farm locations</legend>
+
+  	<input type="radio" name="seg-1" id="seg-alpha" ng-click="valueChanged('Alpha')" checked>
+ 	<label for="seg-alpha">Sort By Alphanumeric</label>
+ 	<input type="radio" name="seg-1" id="seg-distance" ng-click="valueChanged('Distance')">
+ 	<label for="seg-distance">Sort by Distance</label>
+	
+	<div id="searchBoxDiv" ng-show="shouldShowDistanceSearchbar">	
+    <!-- <ui-gmap-search-box template="searchbox.template" events="searchbox.events" parentdiv="searchBoxDiv" style="width:400px;"></ui-gmap-search-box>  -->
+	</div>
     
+    
+    <br><button ng-model="shouldShowFilter" aria-label="Toggle ngHide" ng-click="shouldShowFilter = !shouldShowFilter">Filter</button><br>
+    <div ng-show="shouldShowFilter"> 
+    	<filter_View></filter_View> 
+	</div>
+      	
     <div class="list-group">
     	<div ng-repeat="farm in filteredLocations | orderBy: 'farmName'">
 	  	<a ng-click="viewDetail(farm.id)" class="list-group-item" >
 		    <h4 class="list-group-item-heading">{{farm.farmName}} - {{farm.address}}</h4>
 			    <p class="list-group-item-text">
 			   		<span ng-repeat="product in farm.specialities">
-			       		{{product}}
+			       		{{product}}{{$last ? '' : ', '}}
 			       </span>
 			    </p>  
 	     </a>
 	     </div>
      </div>
-    
-      <button ng-model="shouldShowFilter" aria-label="Toggle ngHide" ng-click="shouldShowFilter = !shouldShowFilter">Filter</button><br>
-      <div ng-show="shouldShowFilter"> 
-      	<filter_View></filter_View> 
-      </div>
+	
+
       
   
 </content>
