@@ -1,24 +1,23 @@
 <div>       
 <form ng-controller="FilterController">
-	<li>
-		<input type="checkbox" ng-model="allCheckBoxSelected" ng-change="allCheckBoxChanged()">All<br>
-    </li>
+	<table width="100%">
+	<tr>
+		<td valign="top">
+		<h5>Products</h5>
+		<div ng-repeat="checkBox in filterCheckBoxes | orderBy : 'label'">
+     			<input type="checkbox" ng-model="checkBox.isSelected" ng-change="checkBoxChanged()"> {{checkBox.label}}<br>
+     	</div>   
+    	</td>
+    	
     
-     <li ng-repeat="checkBox in filterCheckBoxes | orderBy : 'label'">
-     		<input type="checkbox" ng-model="checkBox.isSelected" ng-change="checkBoxChanged()">{{checkBox.label}}<br>
-     </li>   
-    
-    <li>
-		<input type="checkbox" ng-model="allSpecialitySelected" ng-change="allSpecialityChanged()">Speciality Products
-		<!-- If check to see if there ARE any specialties??? -->
-	    <button class="linkButton" ng-model="shouldShowSpecialityProducts" aria-label="Toggle ngHide" ng-click="shouldShowSpecialityProducts = !shouldShowSpecialityProducts">Refine</button><br>
-    </li>
-    
-    <div class="animate-show" ng-show="shouldShowSpecialityProducts">
-    	<li ng-repeat="checkBox in specialityCheckBoxes | orderBy : 'label'">
-     			<input type="checkbox" ng-model="checkBox.isSelected" ng-change="checkBoxChanged()">{{checkBox.label}}<br>
-    	</li>
-    </div>			
+    	<td valign="top">
+    	<h5>Specialty Products</h5>
+   		<div ng-repeat="checkBox in specialityCheckBoxes | orderBy : 'label'">
+			<input type="checkbox" ng-model="checkBox.isSelected" ng-change="checkBoxChanged()"> {{checkBox.label}}<br>
+	    </div>
+	    </td>
+    </tr>
+    </table>		
 </form>   
 </div> 
  

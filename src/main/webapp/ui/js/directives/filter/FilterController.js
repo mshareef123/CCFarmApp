@@ -35,35 +35,6 @@ angular.module('foodbankfarm')
         	}
     	};  
     	
-    	//Toggles all the checkboxes selected or not when you toggle all
-    	$scope.allCheckBoxChanged = function () {     
-    		var setterValue = false;
-    		if($scope.allCheckBoxSelected) {
-    			setterValue = true;
-    		} 
-    		
-    		for (var i = 0; i < $rootScope.filterCheckBoxes.length; i++) {
-    			var currentBox = $rootScope.filterCheckBoxes[i];
-    			currentBox.isSelected = setterValue;
-        	}
-    		$scope.allSpecialitySelected = setterValue;
-    		$scope.allSpecialityChanged();
-    		$scope.checkBoxChanged();
-    	}	 
-    	
-    	//much like the all toggle, but only for specialty products
-    	$scope.allSpecialityChanged = function() {
-    		var setterValue = false;
-    		if($scope.allSpecialitySelected) {
-    			setterValue = true;
-    		} 
-    		
-    		for (var i = 0; i < $rootScope.specialityCheckBoxes.length; i++) {
-    			var currentBox = $rootScope.specialityCheckBoxes[i];
-    			currentBox.isSelected = setterValue;
-        	}
-    	}
-    	
     	$scope.checkBoxChanged = function () {
     		var allProductFilters = angular.copy($rootScope.filterCheckBoxes);
     		var allSpecialityFilters = angular.copy($rootScope.specialityCheckBoxes);
@@ -96,7 +67,8 @@ angular.module('foodbankfarm')
     			var currentLocation = $rootScope.locations[i];
     			var intersectedProducts = _.intersection(currentLocation.products, filterLabels)
     			var intersectedSpecialities = _.intersection(currentLocation.specialities, filterLabels);
-    			if(intersectedProducts.length > 0 || intersectedSpecialities.length > 0 ) {
+    			var totalFilters = intersectedProducts.length + intersectedSpecialities.length;
+    			if(totalFilters == filterLabels.length) {
     				filteredLocations.push(currentLocation);
     			}
     		}
