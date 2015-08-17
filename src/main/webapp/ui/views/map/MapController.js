@@ -22,6 +22,7 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
             	        title:  locations[i].farmName,
             	        address:  locations[i].address,
             	        specialities : specialitiesStr,
+            	        link:'#/detail/'+i,
                         show: false,
             	      };
               ret.onClick = function() {
@@ -55,7 +56,9 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
 	                        title: 'Search Location!!!',
 	                        latitude: place.geometry.location.lat(),
 	                        longitude: place.geometry.location.lng(),
-	                        address:place.adr_address
+	                        address:place.adr_address,
+	            	        link:'#/detail/'+i
+
 	                        //show: false
 	                        //templateurl:'window.tpl.html',
 	                       // templateparameter: place
