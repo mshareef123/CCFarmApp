@@ -1,4 +1,9 @@
 <app_Header></app_Header>
+
+<script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?sensor=false">
+  </script>
+  
 <content>
     <script type="text/ng-template" id="searchbox.tpl.html">
     <div class="input-group">
@@ -30,4 +35,13 @@
   		<filter_View></filter_View> 
   	</div>
   	
+  	<input type="radio" name="seg-1" id="seg-alpha" ng-click="valueChanged('Alpha')" checked>
+ 	<label for="seg-alpha"> Sort By Alphanumeric</label>
+ 	<input type="radio" name="seg-1" id="seg-distance" ng-click="valueChanged('Distance')">
+ 	<label for="seg-distance"> Sort by Distance</label>
+	
+	<div id="searchBoxDiv" ng-show="shouldShowDistanceSearchbar">	
+		 <input id="sortByDistanceField" placeholder="Please enter an address" type="text" style="width:300px;"></input> 		
+	</div>
+	
 </content>
