@@ -9,13 +9,13 @@
     			<div class="panel-body">
     			   <a ng-href="https://maps.google.com?daddr={{farm.address}}+{{farm.city}}+{{farm.state}}+{{farm.zip}}">
     				{{farm.address}}<br/>
-    				{{farm.city}},{{farm.state}},{{farm.zip}}
-    				</a><br>
-    				<a ng-href="http://{{farm.website}}">{{farm.website}}</a><br>
-    				{{farm.phone}}<br>
-    				<span ng-repeat="product in farm.specialities">
-			       		{{product}},
-			       </span>
+    				{{farm.city}}, {{farm.state}}, {{farm.zip}}
+    				</a><br><br>
+    				<a ng-href="http://{{farm.website}}">{{farm.website}}</a><br><br>
+    				<a href="tel://{{farm.phone}}">{{farm.phone}}</a><br><br>
+    				<ul ng-repeat="product in farm.specialities">
+			       		<li>{{product}}</li>
+			       </ul>
     				
     			</div>
     		</div>
