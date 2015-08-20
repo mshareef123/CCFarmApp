@@ -53,8 +53,8 @@ foodbankfarm.config([
             })
 
             .otherwise({
-                templateUrl: 'dist/views/home.html',
-                controller: 'HomeController'
+            	templateUrl: 'dist/views/map.html',
+            	controller: 'MapController'
             });
     }]
 );

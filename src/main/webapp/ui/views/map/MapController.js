@@ -3,7 +3,8 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
     		['$rootScope',
     		 '$location',
              '$scope',
-             function($rootScope,$location,$scope) {
+             'LocationRepository',
+             function($rootScope,$location,$scope,locationRepository) {
     		//$scope.locations = $rootScope.filteredLocations
             $scope.shouldShowFilter = false;
 	        $scope.map = {center: {latitude: 40.0010204, longitude: -75.8069082 }, zoom: 10 };// chester county long lat
@@ -22,7 +23,7 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
             	        title:  locations[i].farmName,
             	        address:  locations[i].address,
             	        specialities : specialitiesStr,
-            	        link:'#/detail/'+i,
+            	        link:'#/detail/'+$rootScope.filteredLocations[i].id,
                         show: false,
             	      };
               ret.onClick = function() {
@@ -51,13 +52,13 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
 	                    for (var i = 0, place; place = places[i]; i++) {
 	                      // Create a marker for each place.
 	                      var marker = {
-	                        id:i,
+	                        id:place.place_id,
 	                        place_id: place.place_id,
 	                        title: 'Search Location!!!',
 	                        latitude: place.geometry.location.lat(),
 	                        longitude: place.geometry.location.lng(),
 	                        address:place.adr_address,
-	            	        link:'#/detail/'+i
+	            	        link:'#/detail/'+place.place_id
 
 	                        //show: false
 	                        //templateurl:'window.tpl.html',
@@ -77,17 +78,32 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
 	            return $scope.map.bounds;
 	          }, function(nv, ov) {
 	            // Only need to regenerate once
-	              var markers = [];
-	              for (var i = 0; i < $rootScope.filteredLocations.length; i++) {
-	                markers.push(createMarker(i, $rootScope.filteredLocations,'id'));
+	              if($rootScope.filteredLocations){
+	            	  initializeMarkers();
+	              }else{
+	                    locationRepository.list('queryString').then(function (result) {
+	                  	$scope.locations = result.data;
+	                      $rootScope.locations = result.data;
+	                      $rootScope.filteredLocations = result.data;
+	                      $rootScope.getCategoriesFromLocation();
+	                      initializeMarkers();
+	                  });  
 	              }
-	              $scope.farmmarkers = markers;
 	          }, true);
+	        
+	        var initializeMarkers = function(){
+	              var markers = [];
+
+	              for (var i = 0; i < $rootScope.filteredLocations.length; i++) {
+		                markers.push(createMarker(i, $rootScope.filteredLocations,'id'));
+		           }
+		           $scope.farmmarkers = markers;
+	        }
 	        
 	        $scope.viewDetail  = function(id){
            	 $location.path('/detail/' + id);
            };
-
+           
            
            //This is all my sort by distance stuff
            $scope.shouldShowDistanceSearchbar = false;
