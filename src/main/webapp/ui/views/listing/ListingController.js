@@ -18,21 +18,10 @@ angular.module('foodbankfarm')
 	            });  
             }
            
-            $scope.valueChanged = function(radioButtonValue) {
-                if(radioButtonValue == 'Distance') {
-                	$scope.shouldShowDistanceSearchbar = true;
-                } else {
-                	$scope.shouldShowDistanceSearchbar = false;
-                }
-            };
-            
             $scope.viewDetail  = function(id){
             	 $location.path('/detail/' + id);
             };
         
-            //This is all my sort by distance stuff
-            $scope.shouldShowDistanceSearchbar = false;
-
             $scope.valueChanged = function(radioButtonValue) {
                 if(radioButtonValue == 'Distance') {
                 	$scope.shouldShowDistanceSearchbar = true;
