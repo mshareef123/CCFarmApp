@@ -35,6 +35,18 @@ angular.module('foodbankfarm')
         	}
     	};  
     	
+    	$scope.resetFilters = function() {
+    		for(var i = 0; i < $rootScope.filterCheckBoxes.length; i++) {
+    			var checkBoxObject = $rootScope.filterCheckBoxes[i];
+    			checkBoxObject.isSelected = false;
+    		}
+    		
+    		for(var i = 0; i < $rootScope.specialityCheckBoxes.length; i++) {
+    			var checkBoxObject = $rootScope.specialityCheckBoxes[i];
+    			checkBoxObject.isSelected = false;
+    		}
+    	}
+    	
     	$scope.checkBoxChanged = function () {
     		var allProductFilters = angular.copy($rootScope.filterCheckBoxes);
     		var allSpecialityFilters = angular.copy($rootScope.specialityCheckBoxes);

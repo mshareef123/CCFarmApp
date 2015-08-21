@@ -18,7 +18,7 @@
 	</div>
       	
     <div class="list-group">
-    	<div ng-repeat="farm in filteredLocations | orderBy: 'farmName'">
+    	<div ng-repeat="farm in filteredLocations | orderBy: sortOrder">
 	  	<a ng-click="viewDetail(farm.id)" class="list-group-item" >
 		    <h4 class="list-group-item-heading">{{farm.farmName}} - {{farm.city}}</h4>
 			    <p class="list-group-item-text">
