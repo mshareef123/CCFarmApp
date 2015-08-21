@@ -33,20 +33,19 @@ angular.module('foodbankfarm')
             
             
             $scope.setUpSearchBox = function () {
-//         	   var input = document.getElementById('sortByDistanceField');
-//                $scope.searchBox = new google.maps.places.SearchBox(input);
-//                
-//                // Listen for the event fired when the user selects a prediction and retrieve
-//                // more details for that place.
-//                $scope.searchBox.addListener('places_changed', function() {
-//             	   var places = $scope.searchBox.getPlaces();
-//   
-//             	   if (places.length == 0) {
-//             		   return;
-//             	   } else {
-//             		   $rootScope.currentSortLocation = places[0];
-//             	   }
-             	   var currentUserLocation  = {latitude: 40.0010204, longitude: -75.8069082 };
+         	   var input = document.getElementById('sortByDistanceField');
+                $scope.searchBox = new google.maps.places.SearchBox(input);
+                
+                // Listen for the event fired when the user selects a prediction and retrieve
+                // more details for that place.
+                $scope.searchBox.addListener('places_changed', function() {
+             	   var places = $scope.searchBox.getPlaces();
+   
+             	   if (places.length == 0) {
+             		   return;
+             	   } else {
+             		   $rootScope.currentSortLocation = places[0];
+             	   }
              	   var numberOfLocations = $rootScope.locations.length;
              	   for(var i = 0; i < numberOfLocations; i++) {
              		   var currentLocation = $rootScope.locations[i];
@@ -58,8 +57,8 @@ angular.module('foodbankfarm')
              	   }
              	   
              	   
-//                });
-            }
+                });
+            }           
 
 
 }]);
