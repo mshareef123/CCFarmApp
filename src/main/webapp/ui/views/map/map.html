@@ -17,12 +17,10 @@
 
         <ui-gmap-markers models="farmmarkers" coords="'self'" icon="'icon'" ng-click="'onClick'">
             <ui-gmap-windows show="show">
-                <div ng-non-bindable>{{title}}  
-                	<p>
-			   			{{specialities}}
-			    	</p>
-                	<a href="{{link}}">
-                		Link to details page
+                <div ng-non-bindable><b>{{title}}</b>  
+                	<br/><br/><p>{{specialities}}</p>
+                	<a href="{{link}}"> <!-- target="_blank" -->
+                		View contact information
                 	</a>
                 </div>
             </ui-gmap-windows>
