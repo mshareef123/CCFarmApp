@@ -1,23 +1,28 @@
 <app_Header></app_Header>
 <content>
 
-  	<input type="radio" name="seg-1" id="seg-alpha" ng-click="valueChanged('Alpha')" checked>
- 	<label for="seg-alpha"> Sort by name</label>
- 	<input type="radio" name="seg-1" id="seg-distance" ng-click="valueChanged('Distance')">
- 	<label for="seg-distance"> Sort by distance</label>
+	<div class="btn-group" data-toggle="buttons">
+		<label class="btn btn-default btn-sm active" ng-click="valueChanged('Alpha')">
+    		<input type="radio" name="options" id="option1" checked> Sort by name
+  		</label>
+  		<label class="btn btn-default btn-sm" ng-click="valueChanged('Distance')">
+    		<input type="radio" name="options" id="option2" > Sort by distance
+  		</label>
+  		
+	</div>
 	
 	<div id="searchBoxDiv" ng-show="shouldShowDistanceSearchbar">	
 		 <input id="sortByDistanceField" placeholder="Please enter an address" type="text" style="width:300px;"></input> 		
 	</div>
     
     
-    <br><button ng-model="shouldShowFilter" aria-label="Toggle ngHide" ng-click="shouldShowFilter = !shouldShowFilter">Filter</button><br>
+    <br><button ng-model="shouldShowFilter" class="btn btn-default btn-sm" aria-label="Toggle ngHide"  style="margin-top:20px" ng-click="shouldShowFilter = !shouldShowFilter">Filter</button><br>
     
     <div ng-show="shouldShowFilter"> 
     	<filter_View></filter_View> 
 	</div>
       	
-    <div class="list-group">
+    <div class="list-group" style="margin-top:20px">
     	<div ng-repeat="farm in filteredLocations | orderBy: sortOrder">
 	  	<a ng-click="viewDetail(farm.id)" class="list-group-item" >
 		    <h4 class="list-group-item-heading">{{farm.farmName}} - {{farm.city}}</h4>

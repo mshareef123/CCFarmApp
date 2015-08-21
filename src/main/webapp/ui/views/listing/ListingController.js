@@ -24,6 +24,7 @@ angular.module('foodbankfarm')
             };
         
             $scope.valueChanged = function(radioButtonValue) {
+
                 if(radioButtonValue == 'Distance') {
                 	$scope.shouldShowDistanceSearchbar = true;
                 	$scope.setUpSearchBox();
