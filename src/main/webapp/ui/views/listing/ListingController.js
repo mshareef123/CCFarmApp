@@ -63,7 +63,7 @@ angular.module('foodbankfarm')
            		   	$rootScope.currentUserLocation = location;
            	   	}
            	   
-           	   	updateAllSortLocations();
+           	   	$scope.$apply(updateAllSortLocations());
             };
 
  
@@ -78,15 +78,16 @@ angular.module('foodbankfarm')
 
            
             $scope.getCurrentLocation = function() {
+        		var input = document.getElementById('sortByDistanceField');
+        		input.value = "My Current Location"
             	  navigator.geolocation.getCurrentPosition(geoSuccess);
             };
         
         	var geoSuccess = function(position) {
-        		var input = document.getElementById('sortByDistanceField');
-        		input.value = "My Current Location"
+
            	   	var location = {lat: position.coords.latitude, long: position.coords.longitude};
         		$rootScope.currentUserLocation = location;
-        		updateAllSortLocations();
+           	   	$scope.$apply(updateAllSortLocations());
         	};
 
 }]);

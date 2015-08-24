@@ -12,12 +12,12 @@
 	</div>
 	
 	<div id="searchBoxDiv" ng-show="shouldShowDistanceSearchbar">	
-		 <input id="sortByDistanceField" placeholder="Please enter an address" type="text" style="width:300px;"></input>
-		 <button class="btn btn-default btn-sm" ng-click="getCurrentLocation()">Use my current location</button> 		
+		 <input id="sortByDistanceField" class="form-control" placeholder="Please enter an address" type="text" style="width:300px; margin-top:20px"></input>
+		 <button class="btn btn-default btn-sm" ng-click="getCurrentLocation()" style="margin-top:20px">Use my current location</button> 		
 	</div>
     
     
-    <br><button ng-model="shouldShowFilter" class="btn btn-default btn-sm" aria-label="Toggle ngHide"  style="margin-top:20px" ng-click="shouldShowFilter = !shouldShowFilter">Filter</button><br>
+    <br><button class="btn btn-default btn-sm" aria-label="Toggle ngHide"  style="margin-top:20px" ng-click="shouldShowFilter = !shouldShowFilter">Filter</button><br>
     
     <div ng-show="shouldShowFilter"> 
     	<filter_View></filter_View> 

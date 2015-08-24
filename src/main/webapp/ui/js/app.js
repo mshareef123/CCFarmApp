@@ -14,7 +14,6 @@ var foodbankfarm = angular.module('foodbankfarm', [
     'ngCookies',
     'ngRoute',
     'ngLocale',
-    'ngTouch',
     'ngResource',
     'foodbankfarm.directives',
     'foodbankfarm.repositories',
