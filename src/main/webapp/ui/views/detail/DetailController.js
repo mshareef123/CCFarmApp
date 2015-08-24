@@ -4,11 +4,27 @@ angular.module('foodbankfarm')
         '$rootScope',
         '$routeParams',
         '$scope',
-        function ($q,$rootScope,$route,$scope) {
+        'LocationRepository',
+        function ($q,$rootScope,$route,$scope,locationRepository) {
         	$scope.farm ={};
         	var routeID = Number($route.id);
-            var farmSelected = _.findWhere($rootScope.locations, {'id' : routeID});
-            $scope.farm = farmSelected;
+
+            if(!$rootScope.filteredLocations){
+            	//retrieving list of locations
+	            locationRepository.list('queryString').then(function (result) {
+	            	$scope.locations = result.data;
+	                $rootScope.locations = result.data;
+	                $rootScope.filteredLocations = result.data;
+	                //$rootScope.getCategoriesFromLocation();
+	                var farmSelected = _.findWhere($rootScope.locations, {'id' : routeID});
+	                $scope.farm = farmSelected;
+
+	            });  
+            }else{
+                var farmSelected = _.findWhere($rootScope.locations, {'id' : routeID});
+                $scope.farm = farmSelected;
+            	
+            }
         	
         }
     ]);
