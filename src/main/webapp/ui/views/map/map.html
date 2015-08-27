@@ -15,7 +15,7 @@
     <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds">
         <ui-gmap-search-box template="searchbox.template" events="searchbox.events"></ui-gmap-search-box>
 
-        <ui-gmap-markers models="farmmarkers" coords="'self'" icon="'icon'" ng-click="'onClick'">
+        <ui-gmap-markers models="farmmarkers" coords="'self'" icon="'icon'" click="onClick">
             <ui-gmap-windows show="show">
                 <div ng-non-bindable><b>{{title}}</b>  
                 	<br/><br/><p>{{specialities}}</p>
