@@ -106,5 +106,12 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
            	 $location.path('/detail/' + id);
            };
            
+           
+           $scope.$watchCollection('filteredLocations', function(oldlocations, newlocations) {
+        	   if($rootScope.filteredLocations){
+        		   initializeMarkers();
+        	   }
+           });
+
 
     }]);
