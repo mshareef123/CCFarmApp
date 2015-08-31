@@ -8,6 +8,7 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
     		//$scope.locations = $rootScope.filteredLocations
             $scope.shouldShowFilter = false;
 	        $scope.map = {center: {latitude: 40.0010204, longitude: -75.8069082 }, zoom: 10 };// chester county long lat
+	        
 	        $scope.options = {scrollwheel: false};
 	        $scope.farmmarkers = [];
 	        $scope.openWindow = {};
@@ -28,7 +29,7 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
             	      };
               ret.onClick = function() {
             	  $scope.openWindow.show = false;
-                  //ret.show = !ret.show;
+                  ret.show = !ret.show;
             	  $scope.openWindow = ret;
 
 	              //window.console.log("Clicked!");
@@ -91,6 +92,7 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
 	                      initializeMarkers();
 	                  });  
 	              }
+	              	              
 	          }, true);
 	        
 	        var initializeMarkers = function(){
@@ -106,7 +108,7 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
            	 $location.path('/detail/' + id);
            };
            
-           
+
            $scope.$watchCollection('filteredLocations', function(oldlocations, newlocations) {
         	   if($rootScope.filteredLocations){
         		   initializeMarkers();

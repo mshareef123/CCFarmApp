@@ -45,7 +45,7 @@ angular.module('foodbankfarm')
           		   var currentUserLocationLatLng = new google.maps.LatLng( $rootScope.currentUserLocation.lat,  $rootScope.currentUserLocation.long);
            		   var distance = distance = google.maps.geometry.spherical.computeDistanceBetween(currentLocationLatLng, currentUserLocationLatLng)
            		   currentLocation.sortDistance = (distance/1000)*0.621371;//converting to miles
-           		   window.console.log(currentLocation.sortDistance);
+//           		   window.console.log(currentLocation.sortDistance);
            	   	}
            	   
            	   	$scope.sortOrder = 'sortDistance';
