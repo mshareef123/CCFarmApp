@@ -5,6 +5,8 @@
   </script>
   
 <content>
+	<p> To find farm products near you, enter your address in the location box and hit “Enter.” To find specific farm products, click the “Find Products” button below. To see the farms listed by name, click the button for “Listings”.</p>
+	
     <script type="text/ng-template" id="searchbox.tpl.html">
     <div class="input-group">
         <input type="text" class="form-control"  placeholder="Search by location" style="width:200px;">
@@ -28,7 +30,7 @@
     </ui-gmap-google-map>
    
    
-  	<button aria-label="Toggle ngHide"  class="btn btn-default btn-sm"  style="margin-top:20px" ng-click="shouldShowFilter = !shouldShowFilter">Filter</button><br>
+  	<button aria-label="Toggle ngHide"  class="btn btn-default btn-sm"  style="margin-top:20px" ng-click="shouldShowFilter = !shouldShowFilter">Find Products</button><br>
     <div ng-show="shouldShowFilter"> 
   		<filter_View></filter_View> 
   	</div>

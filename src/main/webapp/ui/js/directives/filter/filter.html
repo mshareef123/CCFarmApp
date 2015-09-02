@@ -6,7 +6,7 @@
 		<td valign="top">
 		<h5>Products</h5>
 		<div ng-repeat="checkBox in filterCheckBoxes | orderBy : 'label'">
-     			<input type="checkbox" ng-model="checkBox.isSelected" ng-change="checkBoxChanged()"> {{checkBox.label}}<br>
+     		<label style="font-weight: normal !important;"><input type="checkbox" ng-model="checkBox.isSelected" ng-change="checkBoxChanged()"> {{checkBox.label}}</label><br>
      	</div>   
     	</td>
     	
@@ -14,7 +14,7 @@
     	<td valign="top">
     	<h5>Specialty Products</h5>
    		<div ng-repeat="checkBox in specialityCheckBoxes | orderBy : 'label'">
-			<input type="checkbox" ng-model="checkBox.isSelected" ng-change="checkBoxChanged()"> {{checkBox.label}}<br>
+			<label style="font-weight: normal !important;"><input type="checkbox" ng-model="checkBox.isSelected" ng-change="checkBoxChanged()"> {{checkBox.label}}</label><br>
 	    </div>
 	    </td>
     </tr>
