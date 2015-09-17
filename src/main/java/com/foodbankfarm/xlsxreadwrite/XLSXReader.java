@@ -28,10 +28,11 @@ public class XLSXReader {
 	private static int ZIP_COL = 4;
 	private static int PHONE_COL = 5;
 	private static int WEBSITE_COL = 6;
-	private static int PRODUCTS_COL = 7;
+	private static int TYPE_OF_OPP_COL = 7;
 	private static int SPECIALTIES_COL = 8;
-	private static int LATITUDE_COL = 9;
-	private static int LONGITUDE_COL = 10;
+	private static int SPECIAL_DESIGNATION_COL = 9;
+	private static int LATITUDE_COL = 10;
+	private static int LONGITUDE_COL = 11;
 	
 	/*
 	 0 Farm/Business Name	
@@ -41,10 +42,11 @@ public class XLSXReader {
 	 4 Zip	
 	 5 Phone	
 	 6 Website	
-	 7 Products
+	 7 type of operation
 	 8 Specialities 	
-	 9 Latitude	
-	 10 Longitude
+	 9 special designation
+	 10 Latitude	
+	 11 Longitude
 
 	 */
 	
@@ -53,7 +55,7 @@ public class XLSXReader {
 		InputStream in = null;
 
 		try {
- 		    in = context.getResourceAsStream("/WEB-INF/classes/FarmAppData.xlsx"); // example
+ 		    in = context.getResourceAsStream("/src/main/resources/FarmAppData.xlsx"); // example
 			XSSFWorkbook workBook = new XSSFWorkbook (in);
 			XSSFSheet sheet = workBook.getSheetAt(0);
 			Iterator<Row> rowIterator = sheet.iterator();
@@ -77,7 +79,8 @@ public class XLSXReader {
 				String phone = row.getCell(PHONE_COL).getStringCellValue();
 				String website = row.getCell(WEBSITE_COL).getStringCellValue();
 				String specialities = row.getCell(SPECIALTIES_COL).getStringCellValue();
-				String products = row.getCell(PRODUCTS_COL).getStringCellValue();
+				String typeOfOpp = row.getCell(TYPE_OF_OPP_COL).getStringCellValue();
+				String specialDesignation = row.getCell(SPECIAL_DESIGNATION_COL).getStringCellValue();
 				Cell latCell = row.getCell(LATITUDE_COL);
 				latCell.setCellType(Cell.CELL_TYPE_STRING); 
 //				if(latCell.getCellType() == Cell.CELL_TYPE_NUMERIC){
@@ -104,8 +107,9 @@ public class XLSXReader {
 				farm.setCity(city);
 				farm.setId(id);
 				farm.setPhone(phone);
-				farm.setProducts(cleanData(products));
-				farm.setSpecialities(cleanData(specialities));
+				farm.setProducts(cleanData(specialities));
+				farm.setTypeOfOperation(cleanData(typeOfOpp));
+				farm.setDesignation(cleanData(specialDesignation));
 				farm.setState(state);
 				farm.setWebsite(website);
 				farm.setZip(zip);
@@ -151,3 +155,4 @@ public class XLSXReader {
 		}
 	}
 }
+
