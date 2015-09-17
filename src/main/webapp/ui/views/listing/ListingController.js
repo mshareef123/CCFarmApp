@@ -8,10 +8,11 @@ angular.module('foodbankfarm')
             $scope.shouldShowFilter = false;
             $scope.shouldShowDistanceSearchbar = false;
         	$scope.sortOrder = 'farmName';
+            var serverURL =  $location.absUrl().split('#')[0];
 
             if(!$rootScope.filteredLocations){
             	//retrieving list of locations
-	            locationRepository.list('queryString').then(function (result) {
+	            locationRepository.list(serverURL).then(function (result) {
 	            	$scope.locations = result.data;
 	                $rootScope.locations = result.data;
 	                $rootScope.filteredLocations = result.data;

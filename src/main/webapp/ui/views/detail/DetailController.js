@@ -4,14 +4,16 @@ angular.module('foodbankfarm')
         '$rootScope',
         '$routeParams',
         '$scope',
+        '$location',
         'LocationRepository',
-        function ($q,$rootScope,$route,$scope,locationRepository) {
+        function ($q,$rootScope,$route,$scope,$location,locationRepository) {
         	$scope.farm ={};
         	var routeID = Number($route.id);
+            var serverURL =  $location.absUrl().split('#')[0];
 
             if(!$rootScope.filteredLocations){
             	//retrieving list of locations
-	            locationRepository.list('queryString').then(function (result) {
+	            locationRepository.list(serverURL).then(function (result) {
 	            	$scope.locations = result.data;
 	                $rootScope.locations = result.data;
 	                $rootScope.filteredLocations = result.data;

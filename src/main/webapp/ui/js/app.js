@@ -25,7 +25,9 @@ foodbankfarm.config([
     '$routeProvider',
     '$locationProvider',
     '$httpProvider',
-    function (router) {
+    function (router,$locationProvider) {
+        //$locationProvider.html5Mode(true);
+
         router
             .when('/home/', {
                 templateUrl: 'dist/views/home.html',
