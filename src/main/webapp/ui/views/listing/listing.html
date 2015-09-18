@@ -28,7 +28,7 @@
 	  	<a ng-click="viewDetail(farm.id)" class="list-group-item" >
 		    <h4 class="list-group-item-heading">{{farm.farmName}} - {{farm.city}}</h4>
 			    <p class="list-group-item-text">
-			   		<span ng-repeat="product in farm.specialities">
+			   		<span ng-repeat="product in farm.products">
 			       		{{product}}{{$last ? '' : ', '}}
 			       	<div ng-show="sortOrder == 'sortDistance'" style="float:right">
 			       		{{farm.sortDistance | number:1}} miles

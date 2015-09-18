@@ -3,20 +3,28 @@
 	<button ng-model="shouldShowFilter" aria-label="Toggle ngHide" ng-click="resetFilters()" class="btn btn-default btn-sm">Reset Filter</button>
 	<table width="100%">
 	<tr>
+		
+		<td valign="top">
+    	<h5>Type of Operation</h5>
+   		<div ng-repeat="checkBox in oppCheckBoxes | orderBy : 'label'">
+			<label style="font-weight: normal !important;"><input type="checkbox" ng-model="checkBox.isSelected" ng-change="checkBoxChanged()"> {{checkBox.label}}</label><br>
+	    </div>
+	    </td>
+	    
 		<td valign="top">
 		<h5>Products</h5>
-		<div ng-repeat="checkBox in filterCheckBoxes | orderBy : 'label'">
+		<div ng-repeat="checkBox in productCheckBoxes | orderBy : 'label'">
      		<label style="font-weight: normal !important;"><input type="checkbox" ng-model="checkBox.isSelected" ng-change="checkBoxChanged()"> {{checkBox.label}}</label><br>
      	</div>   
     	</td>
     	
-    
     	<td valign="top">
-    	<h5>Specialty Products</h5>
-   		<div ng-repeat="checkBox in specialityCheckBoxes | orderBy : 'label'">
+    	<h5>Special Designation</h5>
+   		<div ng-repeat="checkBox in designationCheckBoxes | orderBy : 'label'">
 			<label style="font-weight: normal !important;"><input type="checkbox" ng-model="checkBox.isSelected" ng-change="checkBoxChanged()"> {{checkBox.label}}</label><br>
 	    </div>
 	    </td>
+    	
     </tr>
     </table>		
 </form>   
