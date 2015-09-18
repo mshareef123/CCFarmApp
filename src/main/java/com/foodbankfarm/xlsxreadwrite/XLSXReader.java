@@ -55,7 +55,7 @@ public class XLSXReader {
 		InputStream in = null;
 
 		try {
- 		    in = context.getResourceAsStream("/src/main/resources/FarmAppData.xlsx"); // example
+ 		    in = context.getResourceAsStream("/WEB-INF/classes/FarmAppData.xlsx"); // example
 			XSSFWorkbook workBook = new XSSFWorkbook (in);
 			XSSFSheet sheet = workBook.getSheetAt(0);
 			Iterator<Row> rowIterator = sheet.iterator();
