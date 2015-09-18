@@ -44,7 +44,8 @@ angular.module('foodbankfarm')
         	}
     	};  
     	
-    	var resetFiltersForAllBoxes = function() {
+    	
+    	$scope.resetFilters = function() {
     		for(var i = 0; i < $rootScope.productCheckBoxes.length; i++) {
     			var checkBoxObject = $rootScope.productCheckBoxes[i];
     			checkBoxObject.isSelected = false;
@@ -59,11 +60,8 @@ angular.module('foodbankfarm')
     			var checkBoxObject = $rootScope.designationCheckBoxes[i];
     			checkBoxObject.isSelected = false;
     		}
-    	}
-    	
-    	$scope.resetFilters = function() {
-    		//I'm hoping this helps the map update.
-    		resetFiltersForAllBoxes();
+    		
+    		$scope.checkBoxChanged();
     	}
     	
     	$scope.checkBoxChanged = function () {
