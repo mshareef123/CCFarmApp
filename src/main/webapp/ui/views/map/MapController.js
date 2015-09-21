@@ -1,4 +1,4 @@
-angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
+	angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
     .controller('MapController', 
     		['$rootScope',
     		 '$location',
@@ -15,9 +15,9 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
 	        $scope.farmmarkers = [];
 	        $scope.openWindow = {};
 	        var createMarker = function (i, locations,idKey) {
-	        	var specialitiesStr = '';
-	        	if(locations[i].specialities && locations[i].specialities.length >0){
-	        		specialitiesStr = locations[i].specialities.join(", ");
+	        	var productString = '';
+	        	if(locations[i].products && locations[i].products.length >0){
+	        		productString = locations[i].products.join(", ");
 	        	}
 	        	
                 var ret = {
@@ -25,7 +25,8 @@ angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
             	        longitude:  locations[i].longitude,
             	        title:  locations[i].farmName,
             	        address:  locations[i].address,
-            	        specialities : specialitiesStr,
+            	        products : productString,
+            	        city: locations[i].city,
             	        link:'#/detail/'+$rootScope.filteredLocations[i].id,
                         show: false,
             	      };
