@@ -36,7 +36,7 @@ angular.module('foodbankfarm')
                 	$scope.shouldShowDistanceSearchbar = false;
                 	$scope.sortOrder = 'farmName';
                 }
-            };
+            }
 
             var updateAllSortLocations = function () {
             	var numberOfLocations = $rootScope.locations.length;
@@ -64,7 +64,7 @@ angular.module('foodbankfarm')
            		   	$rootScope.currentUserLocation = location;
            	   	}
            	   
-           	   	$scope.$apply(updateAllSortLocations());
+           	   	$rootScope.$apply(updateAllSortLocations());
             };
 
  
@@ -81,14 +81,18 @@ angular.module('foodbankfarm')
             $scope.getCurrentLocation = function() {
         		var input = document.getElementById('sortByDistanceField');
         		input.value = "My Current Location"
-            	  navigator.geolocation.getCurrentPosition(geoSuccess);
+            	navigator.geolocation.getCurrentPosition(geoSuccess,geoFail,{timeout:5000});
             };
         
         	var geoSuccess = function(position) {
-
            	   	var location = {lat: position.coords.latitude, long: position.coords.longitude};
         		$rootScope.currentUserLocation = location;
            	   	$scope.$apply(updateAllSortLocations());
         	};
+        	
+        	var geoFail = function() {
+        		alert("Could not get your location! Please try again");
+        	}
+        	
 
 }]);
