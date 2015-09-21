@@ -12,7 +12,7 @@
 	</div>
 	
 	<div id="searchBoxDiv" ng-show="shouldShowDistanceSearchbar">	
-		 <input id="sortByDistanceField" class="form-control" placeholder="Please enter an address" type="text" style="width:300px; margin-top:20px"></input>
+		 <input id="sortByDistanceField" class="form-control" placeholder="Please enter an address" type="text" style="width:300px; margin-top:20px" onfocus="{ this.value = ''; }"></input>
 		 <button class="btn btn-default btn-sm" ng-click="getCurrentLocation()" style="margin-top:20px">Use my current location</button> 		
 	</div>
     
