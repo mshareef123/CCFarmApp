@@ -5,7 +5,7 @@
   </script>
   
 <content>
-	<p> To find farm products near you, enter your address in the location box and hit “Enter.” To find specific farm products, click the “Find Products” button below. To see the farms listed by name, click the button for “Listings”.</p>
+	<p> To find farm products near you, enter your address in the location box below. To find specific farm products, click the “Find Products” button below. To see the farms listed by name, click the button for “Listings”.</p>
 	
     <script type="text/ng-template" id="searchbox.tpl.html">
     <div class="input-group">
@@ -21,7 +21,7 @@
             <ui-gmap-windows show="show">
                 <div ng-non-bindable><b>{{title}}</b>  
                 	<br/><p>{{city}}</p>
-                	<br/><p>{{products}}</p>
+                	<p>{{products}}</p>
                 	<a href="{{link}}"> <!-- target="_blank" -->
                 		View contact information
                 	</a>
