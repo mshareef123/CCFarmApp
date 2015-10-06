@@ -7,6 +7,7 @@ angular.module('foodbankfarm')
         function ($rootScope,$scope,$location,locationRepository) {
             $scope.shouldShowFilter = false;
             $scope.shouldShowDistanceSearchbar = false;
+            $rootScope.shouldShowNoResults = false;
         	$scope.sortOrder = 'farmName';
             var serverURL =  $location.absUrl().split('#')[0];
 

@@ -13,7 +13,7 @@
 	</div>
     </script>
 
-    <div id="map_canvas" ng-controller="MapController">
+    <div id="map_canvas" ng-controller="MapController" style="padding:0px 10px 0px 10px;">
     <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds">
         <ui-gmap-search-box template="searchbox.template" events="searchbox.events" options="searchbox.options"></ui-gmap-search-box>	
         <ui-gmap-polyline ng-repeat="p in polylines" path="p.path" stroke="p.stroke" visible='p.visible' geodesic='p.geodesic' fit="false" editable="p.editable" draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>

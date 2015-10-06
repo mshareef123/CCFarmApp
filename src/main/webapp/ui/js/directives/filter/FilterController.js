@@ -114,7 +114,11 @@ angular.module('foodbankfarm')
     		}
 
     		$rootScope.filteredLocations = filteredLocations;
-
+    		if(filteredLocations.length == 0) {
+    			$rootScope.shouldShowNoResults = true;
+    		} else {
+    			$rootScope.shouldShowNoResults = false;
+    		}
     	};
     	
     }]); 
