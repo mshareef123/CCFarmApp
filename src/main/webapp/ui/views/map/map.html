@@ -5,7 +5,7 @@
   </script>
   
 <content>
-	<p> To find farm products near you, enter your address in the location box and hit “Enter.” To find specific farm products, click the “Find Products” button below. To see the farms listed by name, click the button for “Listings”.</p>
+	<p> To find farm products near you, enter your address in the location box below. To find specific farm products, click the “Find Products” button below. To see the farms listed by name, click the button for “Listings”.</p>
 	
     <script type="text/ng-template" id="searchbox.tpl.html">
     <div class="input-group">
@@ -15,13 +15,13 @@
 
     <div id="map_canvas" ng-controller="MapController">
     <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds">
-        <ui-gmap-search-box template="searchbox.template" events="searchbox.events"></ui-gmap-search-box>
-
+        <ui-gmap-search-box template="searchbox.template" events="searchbox.events" options="searchbox.options"></ui-gmap-search-box>	
+        <ui-gmap-polyline ng-repeat="p in polylines" path="p.path" stroke="p.stroke" visible='p.visible' geodesic='p.geodesic' fit="false" editable="p.editable" draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>
         <ui-gmap-markers models="farmmarkers" coords="'self'" icon="'icon'" click="onClick">
             <ui-gmap-windows show="show">
                 <div ng-non-bindable><b>{{title}}</b>  
                 	<br/><p>{{city}}</p>
-                	<br/><p>{{products}}</p>
+                	<p>{{products}}</p>
                 	<a href="{{link}}"> <!-- target="_blank" -->
                 		View contact information
                 	</a>
