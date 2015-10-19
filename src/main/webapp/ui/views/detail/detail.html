@@ -7,16 +7,20 @@
     				<h3 class="panel-title">{{farm.farmName}}</h3>
     			</div>
     			<div class="panel-body">
-    			   <a ng-href="https://maps.google.com?daddr={{farm.address}}+{{farm.city}}+{{farm.state}}+{{farm.zip}}" target="_blank">
-    				{{farm.address}}<br/>
+<!--     			   <a ng-href="https://maps.google.com?daddr={{farm.address}}+{{farm.city}}+{{farm.state}}+{{farm.zip}}" target="_blank">
+ -->    				{{farm.address}}<br/>
     				{{farm.city}}, {{farm.state}}, {{farm.zip}}
-    				</a><br><br>
+    				<!-- </a> --><br><br>
     				<a ng-href="http://{{farm.website}}" target="_blank">{{farm.website}}</a><br><br>
     				<a href="tel://{{farm.phone}}">{{farm.phone}}</a><br><br>
     				<ul ng-repeat="product in farm.products">
 			       		<li>{{product}}</li>
 			       </ul>
     				
+    			</div>
+				<div class="btn-group btn-group-justified" role="group" aria-label="...">
+					<a href="#" class="btn btn-primary"   ng-click="showOnMap()" role="button">View on map</a>
+					<a href="#" class="btn btn-primary"   ng-click="showOnGoogleMaps()" role="button">Get directions</a>
     			</div>
     		</div>
     	</div>

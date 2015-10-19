@@ -1,12 +1,17 @@
 	angular.module('foodbankfarm.map', ['uiGmapgoogle-maps'])
     .controller('MapController', 
     		['$rootScope',
+    	      '$routeParams',
     		 '$location',
              '$scope',
              'LocationRepository',
              'uiGmapIsReady',
-             function($rootScope,$location,$scope,locationRepository, IsReady) {
+             function($rootScope,$route,$location,$scope,locationRepository, IsReady) {
     		//$scope.locations = $rootScope.filteredLocations
+    	    var routeID = 0;
+    	    if($route.id){
+    	    	routeID = Number($route.id);
+    	    }
              var serverURL =  $location.absUrl().split('#')[0];
             $scope.shouldShowFilter = false;
 	        $scope.map = {center: {latitude: 40.0010204, longitude: -75.8069082 }, zoom: 9 };// chester county long lat
@@ -19,7 +24,10 @@
 	        	if(locations[i].products && locations[i].products.length >0){
 	        		productString = locations[i].products.join(", ");
 	        	}
-	        	
+	        	var showInfoWindowOpen = false;
+	        	if(routeID==$rootScope.filteredLocations[i].id){
+	        		showInfoWindowOpen = true;
+	        	}
                 var ret = {
             	        latitude:  locations[i].latitude,
             	        longitude:  locations[i].longitude,
@@ -28,7 +36,7 @@
             	        products : productString,
             	        city: locations[i].city,
             	        link:'#/detail/'+$rootScope.filteredLocations[i].id,
-                        show: false,
+                        show: showInfoWindowOpen,
             	      };
               ret.onClick = function() {
             	  $scope.openWindow.show = false;

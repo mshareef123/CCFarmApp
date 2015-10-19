@@ -37,7 +37,7 @@ foodbankfarm.config([
                 templateUrl: 'dist/views/listing.html',
                 controller: 'ListingController'
             }) 
-            .when('/map', {
+            .when('/map/:id', {
             	templateUrl: 'dist/views/map.html',
             	controller: 'MapController'
             })

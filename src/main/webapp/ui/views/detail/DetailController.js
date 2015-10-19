@@ -28,5 +28,15 @@ angular.module('foodbankfarm')
             	
             }
         	
+            $scope.showOnMap = function(){
+            	$location.path('/map/'+$route.id);
+            }
+            
+            $scope.showOnGoogleMaps = function(){
+            	window.open(
+            			"https://maps.google.com?daddr="+$scope.farm.address+" "+$scope.farm.city+" "+$scope.farm.state+" "+$scope.farm.zip,
+            			'_blank');
+
+            }
         }
     ]);
