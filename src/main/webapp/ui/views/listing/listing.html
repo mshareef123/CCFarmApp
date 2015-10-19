@@ -2,10 +2,10 @@
 <content>
 
 	<div class="btn-group" data-toggle="buttons">
-		<label class="btn btn-default btn-sm active" ng-click="valueChanged('Alpha')">
+		<label class="btn btn-primary btn-sm active" ng-click="valueChanged('Alpha')">
     		<input type="radio" name="options" id="option1" checked> Sort by name
   		</label>
-  		<label class="btn btn-default btn-sm" ng-click="valueChanged('Distance')">
+  		<label class="btn btn-primary btn-sm" ng-click="valueChanged('Distance')">
     		<input type="radio" name="options" id="option2" > Sort by distance
   		</label>
   		
@@ -13,11 +13,15 @@
 	
 	<div id="searchBoxDiv" ng-show="shouldShowDistanceSearchbar">	
 		 <input id="sortByDistanceField" class="form-control" placeholder="Please enter an address" type="text" style="width:300px; margin-top:20px" onfocus="{ this.value = ''; }"></input>
-		 <button class="btn btn-default btn-sm" ng-click="getCurrentLocation()" style="margin-top:20px">Use my current location</button> 		
+		 <button class="btn btn-primary btn-sm" ng-click="getCurrentLocation()" style="margin-top:20px">Use my current location</button> 		
 	</div>
     
     
-    <br><button class="btn btn-default btn-sm" aria-label="Toggle ngHide"  style="margin-top:20px" ng-click="shouldShowFilter = !shouldShowFilter">Find Products</button><br>
+    <br><button class="btn btn-primary btn-sm" aria-label="Toggle ngHide"  style="margin-top:20px" ng-click="shouldShowFilter = !shouldShowFilter">
+     <span ng-if="!shouldShowFilter">Find Products</span>
+     <span ng-if="shouldShowFilter">Hide Products</span>
+    
+    </button><br>
     
     <div ng-show="shouldShowFilter"> 
     	<filter_View></filter_View> 
