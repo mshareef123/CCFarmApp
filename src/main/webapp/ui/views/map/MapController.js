@@ -79,7 +79,7 @@
 	                       // templateparameter: place
 	                      };
 	                      $scope.map = {center: {latitude: places[0].geometry.location.lat(), longitude: places[0].geometry.location.lng() }, zoom: 13 };
-	                      newMarkers.push(marker);
+	                      //newMarkers.push(marker);
 
 	                      bounds.extend(place.geometry.location);
 	                    }
