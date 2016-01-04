@@ -7,7 +7,7 @@
             return {
 					list: function (serverURL) {
 						Require.IsNotNull(serverURL, 'serverURL');
-						return $http.get(serverURL + 'controller/listing');
+						return $http.get(serverURL + 'api/LocationService/GetLocations/');
 					}
                 };
             }
